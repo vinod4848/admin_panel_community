@@ -1,0 +1,48 @@
+:root {
+    --color-212529: #212529;
+    --color-399889: #399889;
+    --color-47ad24: #47ad24;
+    --color-e52e2e: #e52e2e;
+    --color-288599: #288599;
+    --color-3d464d: #3d464d;
+    --color-c3d4da: #c3d4da;
+}
+
+.green {
+    color: var(--color-47ad24);
+    font: 14px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.red {
+    color: var(--color-212529);
+    font: 14px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.quill {
+    background-color: white;
+}
+
+.form-control {
+    box-shadow: none;
+    border-color: var(--color-c3d4da);
+}
+
+.title {
+    font: 28px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: var(--color-212529);
+}
+
+.sub-title {
+    font: 24px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: var(--color-212529);
+}
+
+.desc {
+    font: 14px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: var(--color-288599);
+}

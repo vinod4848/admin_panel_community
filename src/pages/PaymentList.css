@@ -1,0 +1,75 @@
+.download-csv-button {
+  background-color: #166c7d;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  float: right;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.download-csv-button:hover {
+  background-color: #45a049;
+}
+
+.payment-table tfoot {
+  background-color: #f2f2f2;
+  /* Light gray */
+}
+
+.payment-table tfoot td {
+  font-weight: bold;
+}
+
+
+.payment-list-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.loading-text,
+.no-payments-text {
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+}
+
+.amount-summary p {
+  color: #008080;
+}
+
+.payment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.payment-table th,
+.payment-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.payment-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.payment-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.payment-table tbody tr:hover {
+  background-color: #eaeaea;
+}
