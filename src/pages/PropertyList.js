@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, message, Modal, Button, Select } from "antd";
+import { Table, message, Modal, Button, Select ,Space, Image} from "antd";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { base_url } from "../utils/base_url";
@@ -205,6 +205,30 @@ const LandsPlotsList = () => {
       ),
     },
     {
+      title: "Activation Amount",
+      dataIndex: "amount",
+    },
+
+    {
+      title: "Payment Image",
+      dataIndex: "image",
+      render: (image) => (
+        <Space size={[8, 8]} wrap>
+        {image ? (
+          <Image
+            src={image}
+            alt="Image"
+            style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+          />
+        ) : (
+          <span>N/A</span>
+        )}
+      </Space>
+      ),
+    },
+
+
+    {
       title: "Status",
       dataIndex: "isActive",
       render: (isActive, record) => (
@@ -234,6 +258,8 @@ const LandsPlotsList = () => {
       key: index,
       ...property,
       firstName: property.profileId.firstName,
+      amount: property.payments[0]?.amount,
+      image: property.payments[0]?.image,
       approvedby: property.approvedby ? property.approvedby.username || "N/A" : "N/A",
     }));
 

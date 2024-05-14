@@ -100,6 +100,18 @@ const MainLayout = () => {
                 },
               ],
             },
+            {
+              key: "Payments",
+              icon: <FaBlogger className="fs-4" />,
+              label: "Payments",
+              children: [
+                {
+                  key: "payments-listofline",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "Payments List",
+                },
+              ],
+            },
             // {
             //   key: "package",
             //   icon: <FaBlogger className="fs-4" />,
@@ -115,7 +127,7 @@ const MainLayout = () => {
             //       icon: <ImBlog className="fs-4" />,
             //       label: "Package  List",
             //     },
-                
+
             //   ],
             // },
             // {

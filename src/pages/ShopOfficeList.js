@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, message, Modal, Button, Select } from "antd";
+import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
@@ -127,6 +127,8 @@ const ShopOfficeList = () => {
       key: index,
       ...office,
       firstName: office.profileId.firstName,
+      amount: office.payments[0]?.amount,
+      image: office.payments[0]?.image,
       approvedby: office.approvedby
         ? office.approvedby.username || "N/A"
         : "N/A",
@@ -212,6 +214,28 @@ const ShopOfficeList = () => {
             <p>No images available</p>
           )}
         </div>
+      ),
+    },
+    {
+      title: "Activation Amount",
+      dataIndex: "amount",
+    },
+
+    {
+      title: "Payment Image",
+      dataIndex: "image",
+      render: (image) => (
+        <Space size={[8, 8]} wrap>
+          {image ? (
+            <Image
+              src={image}
+              alt="Image"
+              style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+            />
+          ) : (
+            <span>N/A</span>
+          )}
+        </Space>
       ),
     },
     {

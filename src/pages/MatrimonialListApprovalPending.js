@@ -9,130 +9,6 @@ import {
   updateAMatrimonial,
 } from "../features/matrimonial/matrimonialSlice";
 
-// const columns = [
-//   {
-//     title: "SN",
-//     dataIndex: "key",
-//     className: "column-sn",
-//   },
-//   {
-//     title: "FirstName",
-//     dataIndex: "firstName",
-//     className: "column-firstName",
-//   },
-//   {
-//     title: "LastName",
-//     dataIndex: "lastName",
-//   },
-//   {
-//     title: "Gender",
-//     dataIndex: "gender",
-//   },
-//   {
-//     title: "Phone",
-//     dataIndex: "phone",
-//   },
-//   {
-//     title: "DateOfBirth",
-//     dataIndex: "dateOfBirth",
-//     render: (deadline) => moment(deadline).format("YYYY-MM-DD"),
-//   },
-//   {
-//     title: "Profession",
-//     dataIndex: "profession",
-//   },
-//   {
-//     title: "NativePlace",
-//     dataIndex: "nativePlace",
-//   },
-//   {
-//     title: "Height",
-//     dataIndex: "height",
-//   },
-
-//   {
-//     title: "AboutMe",
-//     dataIndex: "aboutMe",
-//   },
-//   {
-//     title: "MaritalStatus",
-//     dataIndex: "maritalStatus",
-//   },
-//   {
-//     title: "ProfileCreatedBy",
-//     dataIndex: "profileCreatedBy",
-//   },
-//   {
-//     title: "AnyDisability",
-//     dataIndex: "anyDisability",
-//   },
-//   {
-//     title: "BloodGroup",
-//     dataIndex: "bloodGroup",
-//   },
-//   {
-//     title: "Lifestyle",
-//     dataIndex: "lifestyle",
-//   },
-//   {
-//     title: "moreAboutYourselfPartnerAndFamily",
-//     dataIndex: "moreAboutYourselfPartnerAndFamily",
-//   },
-//   {
-//     title: "Hobbies",
-//     dataIndex: "hobbies",
-//     render: (hobbies) => (
-//       <span>{Array.isArray(hobbies) ? hobbies.join(", ") : ""}</span>
-//     ),
-//   },
-//   {
-//     title: "Created Date",
-//     dataIndex: "createdAt",
-//     render: (deadline) => moment(deadline).format("YYYY-MM-DD"),
-//   },
-
-//   {
-//     title: "Partner Preferences",
-//     dataIndex: "partnerPreferences",
-//   },
-
-//   {
-//     title: "ReligiousBackground",
-//     dataIndex: "religiousBackground",
-//   },
-//   {
-//     title: "Family",
-//     dataIndex: "family",
-//   },
-//   {
-//     title: "AstroDetails",
-//     dataIndex: "astroDetails",
-//   },
-//   {
-//     title: "EducationAndCareer",
-//     dataIndex: "educationAndCareer",
-//   },
-//   {
-//     title: "HealthInformation",
-//     dataIndex: "healthInformation",
-//   },
-//   {
-//     title: "LocationOfGroom",
-//     dataIndex: "locationOfGroom",
-//   },
-//   {
-//     title: "Profile",
-//     dataIndex: "image",
-//     render: (image) => (
-//       <img src={image} alt="profileBanner" style={{ maxWidth: "100px" }} />
-//     ),
-//   },
-//   {
-//     title: "Activate",
-//     dataIndex: "activateDeactivate",
-//   },
-// ];
-
 const columns = [
   {
     title: "SN",
@@ -282,6 +158,28 @@ const columns = [
     ellipsis: true,
   },
   {
+    title: "Activation Amount",
+    dataIndex: "amount",
+  },
+
+  {
+    title: "Payment Image",
+    dataIndex: "image",
+    render: (image) => (
+      <Space size={[8, 8]} wrap>
+      {image ? (
+        <Image
+          src={image}
+          alt="Image"
+          style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+        />
+      ) : (
+        <span>N/A</span>
+      )}
+    </Space>
+    ),
+  },
+  {
     title: "Activate",
     dataIndex: "activateDeactivate",
   },
@@ -324,6 +222,12 @@ const MatrimonialListApprovalPending = () => {
           address: matrimonial.address || "N/A",
           education: matrimonial.education || "N/A",
           images: matrimonial.images || "N/A",
+          amount: matrimonial.payments[0]?.amount || "N/A",
+          // eslint-disable-next-line no-dupe-keys
+          image: matrimonial.payments[0]?.image || "N/A",
+
+          // amount: pgGuestHouse.payments[0]?.amount,
+          // image: pgGuestHouse.payments[0]?.image,
           hobbies: Array.isArray(matrimonial.hobbies)
             ? matrimonial.hobbies.join(", ")
             : "N/A",

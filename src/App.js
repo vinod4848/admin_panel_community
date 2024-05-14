@@ -63,6 +63,7 @@ import PackageList from "./pages/package-list";
 import AddPackage from "./pages/AddPackage ";
 import PaymentList from "./pages/paymentList";
 import OtherList from "./pages/OtherList";
+import PaymentListofline from "./pages/payment";
 
 function App() {
   return (
@@ -167,6 +168,7 @@ function App() {
           <Route path="package/:packagesId" element={<AddPackage />} />
           <Route path="payment-list" element={<PaymentList />} />
           <Route path="other-list" element={<OtherList />} />
+          <Route path="payments-listofline" element={<PaymentListofline/>} />
         </Route>
       </Routes>
     </Router>

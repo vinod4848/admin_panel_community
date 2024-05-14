@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, message, Modal, Button, Select } from "antd";
+import { Table, message, Modal, Button, Select, Space, Image  } from "antd";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
@@ -174,6 +174,29 @@ const PgGuestHouseList = () => {
       ),
     },
     {
+      title: "Activation Amount",
+      dataIndex: "amount",
+    },
+
+    {
+      title: "Payment Image",
+      dataIndex: "image",
+      render: (image) => (
+        <Space size={[8, 8]} wrap>
+        {image ? (
+          <Image
+            src={image}
+            alt="Image"
+            style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+          />
+        ) : (
+          <span>N/A</span>
+        )}
+      </Space>
+      ),
+    },
+
+    {
       title: "Action",
       dataIndex: "action",
       render: (text, record) => (
@@ -233,6 +256,8 @@ const PgGuestHouseList = () => {
       key: index,
       ...pgGuestHouse,
       firstName: pgGuestHouse.profileId.firstName,
+      amount: pgGuestHouse.payments[0]?.amount,
+      image: pgGuestHouse.payments[0]?.image,
       approvedby: pgGuestHouse.approvedby
         ? pgGuestHouse.approvedby.username || "N/A"
         : "N/A",

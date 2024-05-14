@@ -155,6 +155,29 @@ const FashionList = () => {
       ),
     },
     {
+      title: "Activation Amount",
+      dataIndex: "amount",
+    },
+
+    {
+      title: "Payment Image",
+      dataIndex: "image",
+      render: (image) => (
+        <Space size={[8, 8]} wrap>
+          {image ? (
+            <Image
+              src={image}
+              alt="Image"
+              style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+            />
+          ) : (
+            <span>N/A</span>
+          )}
+        </Space>
+      ),
+    },
+
+    {
       title: "Action",
       dataIndex: "",
       render: (_, record) => (
@@ -203,6 +226,8 @@ const FashionList = () => {
       key: index,
       ...item,
       firstName: item.profileId.firstName,
+      amount: item.payments[0]?.amount,
+      image: item.payments[0]?.image,
       approvedby: item.approvedby ? item.approvedby.username || "N/A" : "N/A",
     }));
 

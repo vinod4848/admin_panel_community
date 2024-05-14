@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { base_url } from "../utils/base_url";
 import { Modal, Button, Table, Image } from "react-bootstrap";
+import { Space } from "antd";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -86,6 +87,8 @@ const AnnouncementApprovalPendingList = () => {
             <th>Description</th>
             <th>Date</th>
             <th>Image</th>
+            <th>Activation Amount</th>
+            <th>Payment Image</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -110,6 +113,20 @@ const AnnouncementApprovalPendingList = () => {
                     style={{ maxWidth: "100px", maxHeight: "100px" }}
                     thumbnail
                   />
+                </td>
+                <td>{filteredAnnouncement.payments[0]?.amount || "N/A"}</td>
+                <td>
+                  <Space size={[8, 8]} wrap>
+                    {filteredAnnouncement.payments[0]?.image ? (
+                      <Image
+                        src={filteredAnnouncement.payments[0]?.image}
+                        alt="Payment"
+                        style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+                      />
+                    ) : (
+                      <span>N/A</span>
+                    )}
+                  </Space>
                 </td>
                 <td>
                   <Button

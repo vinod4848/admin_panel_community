@@ -1,4 +1,4 @@
-import { Table, Space, Image,Input } from "antd";
+import { Table, Space, Image, Input } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -159,6 +159,28 @@ const columns = [
     ellipsis: true,
   },
   {
+    title: "Activation Amount",
+    dataIndex: "amount",
+  },
+
+  {
+    title: "Payment Image",
+    dataIndex: "image",
+    render: (image) => (
+      <Space size={[8, 8]} wrap>
+        {image ? (
+          <Image
+            src={image}
+            alt="Image"
+            style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+          />
+        ) : (
+          <span>N/A</span>
+        )}
+      </Space>
+    ),
+  },
+  {
     title: "Actions",
     dataIndex: "action",
     className: "column-actions",
@@ -179,20 +201,14 @@ const MatrimonialList = () => {
     (state) => state.matrimonial.matrimonials
   );
 
-
   const filteredData = matrimonialState.filter((matrimonial) => {
-    const fieldsToSearch = [
-      "firstName",
-      "profession",
-      "gender",
-      "nativePlace",
-    ];
+    const fieldsToSearch = ["firstName", "profession", "gender", "nativePlace"];
     const query = searchQuery.toLowerCase();
     return fieldsToSearch.some((field) =>
       String(matrimonial[field]).toLowerCase().includes(query)
     );
   });
-  
+
   const transformMatrimonialData = () => {
     return filteredData
       .filter((matrimonial) => matrimonial.isApproved)
@@ -203,7 +219,7 @@ const MatrimonialList = () => {
         const partnerPreferences = matrimonial.partnerPreferences || {};
         const educationAndCareer = matrimonial.educationAndCareer || {};
         const locationOfGroom = matrimonial.locationOfGroom || {};
-  
+
         return {
           key: index + 1,
           firstName: matrimonial.profileId?.firstName || "N/A",
@@ -232,6 +248,8 @@ const MatrimonialList = () => {
           anyDisability: matrimonial.anyDisability || "N/A",
           bloodGroup: matrimonial.bloodGroup || "N/A",
           lifestyle: matrimonial.lifestyle || "N/A",
+          amount: matrimonial.payments[0]?.amount || "N/A",
+          image: matrimonial.payments[0]?.image || "N/A",
           moreAboutYourselfPartnerAndFamily:
             matrimonial.moreAboutYourselfPartnerAndFamily || "N/A",
           religiousBackground: (
@@ -331,7 +349,6 @@ const MatrimonialList = () => {
         };
       });
   };
-  
 
   const showModal = (matrimonialId) => {
     setOpen(true);

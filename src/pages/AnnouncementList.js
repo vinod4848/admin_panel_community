@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { base_url } from "../utils/base_url";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Space, Image } from "antd";
 import axios from "axios";
 
 const AnnouncementList = () => {
@@ -47,12 +47,10 @@ const AnnouncementList = () => {
     const announcementDate = new Date(dateString);
     return announcementDate > currentDate;
   };
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
+    return date.toLocaleDateString();
   };
 
   return (
@@ -61,12 +59,14 @@ const AnnouncementList = () => {
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
           <tr>
-            <th>Approvedby</th>
+            <th>Approved By</th>
             <th>Created By</th>
             <th>Category</th>
             <th>Description</th>
             <th>Date</th>
             <th>Image</th>
+            <th>Activation Amount</th>
+            <th>Payment Image</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -78,15 +78,13 @@ const AnnouncementList = () => {
             )
             .map((filteredAnnouncement) => (
               <tr key={filteredAnnouncement._id}>
-                <td>{filteredAnnouncement.approvedby.username}</td>
+                <td>{filteredAnnouncement.approvedby?.username}</td>
                 <td>
-                  {filteredAnnouncement.createdBy
-                    ? filteredAnnouncement.createdBy.username || "Not Available"
-                    : filteredAnnouncement.profileId?.firstName ||
-                      "Not Available"}
+                  {filteredAnnouncement.createdBy?.username || "Not Available"}
                 </td>
                 <td>{filteredAnnouncement.announcementType}</td>
                 <td>{filteredAnnouncement.description}</td>
+                
                 <td>{formatDate(filteredAnnouncement.date)}</td>
                 <td>
                   <img
@@ -95,9 +93,23 @@ const AnnouncementList = () => {
                     style={{ maxWidth: "100px", maxHeight: "100px" }}
                   />
                 </td>
+                <td>{filteredAnnouncement.payments[0]?.amount || "N/A"}</td>
+                <td>
+                  <Space size={[8, 8]} wrap>
+                    {filteredAnnouncement.payments[0]?.image ? (
+                      <Image
+                        src={filteredAnnouncement.payments[0]?.image}
+                        alt="Payment"
+                        style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+                      />
+                    ) : (
+                      <span>N/A</span>
+                    )}
+                  </Space>
+                </td>
                 <td>
                   <Button
-                    variant="danger"
+                    type="Danger"
                     onClick={() => handleShowModal(filteredAnnouncement)}
                   >
                     Delete
@@ -107,30 +119,32 @@ const AnnouncementList = () => {
             ))}
         </tbody>
       </table>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirm Deletion</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete the announcement?
-          {selectedAnnouncement && (
-            <p>
-              Announcement Type: {selectedAnnouncement.announcementType}, Date:{" "}
-              {selectedAnnouncement.date}
-            </p>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
+      <Modal
+        title="Confirm Deletion"
+        visible={showModal}
+        onCancel={handleCloseModal}
+        footer={[
+          <Button key="cancel" onClick={handleCloseModal}>
+            Cancel
+          </Button>,
           <Button
-            variant="danger"
+            key="delete"
+            type="danger"
             onClick={() => handleDelete(selectedAnnouncement?._id)}
           >
             Delete
           </Button>
-        </Modal.Footer>
+        ]}
+      >
+        <p>
+          Are you sure you want to delete the announcement?
+          {selectedAnnouncement && (
+            <span>
+              Announcement Type: {selectedAnnouncement.announcementType}, Date:{" "}
+              {formatDate(selectedAnnouncement.date)}
+            </span>
+          )}
+        </p>
       </Modal>
     </div>
   );
