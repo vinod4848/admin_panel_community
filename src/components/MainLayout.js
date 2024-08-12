@@ -3,7 +3,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
 import { IoMdNotifications } from "react-icons/io";
 import { ImBlog } from "react-icons/im";
-import { FaBlogger, FaEnvelope, FaEnvelopeOpen } from "react-icons/fa";
+import { FaBlogger, FaEnvelope, FaEnvelopeOpen,FaUsers  } from "react-icons/fa";
 import { Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -88,6 +88,23 @@ const MainLayout = () => {
             //   ],
             // },
 
+            {
+              key: "member",
+              icon: <FaUsers  className="fs-4" />,
+              label: "Members",
+             children: [
+                {
+                  key: "member",
+                  icon: <FaUsers  className="fs-4" />,
+                  label: "Add Member",
+                },
+                {
+                  key: "Member-list",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "Member List",
+                },
+              ],
+            },
             {
               key: "user",
               icon: <FaBlogger className="fs-4" />,

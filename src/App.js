@@ -64,6 +64,8 @@ import AddPackage from "./pages/AddPackage ";
 import PaymentList from "./pages/paymentList";
 import OtherList from "./pages/OtherList";
 import PaymentListofline from "./pages/payment";
+import AddMember from "./pages/AddMember";
+import MemberList from "./pages/MemberList";
 
 function App() {
   return (
@@ -169,6 +171,8 @@ function App() {
           <Route path="payment-list" element={<PaymentList />} />
           <Route path="other-list" element={<OtherList />} />
           <Route path="payments-listofline" element={<PaymentListofline/>} />
+          <Route path="member" element={<AddMember/>} />
+          <Route path="Member-list" element={<MemberList/>} />
         </Route>
       </Routes>
     </Router>
