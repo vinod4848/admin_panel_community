@@ -255,7 +255,7 @@ const PgGuestHouseList = () => {
     .map((pgGuestHouse, index) => ({
       key: index,
       ...pgGuestHouse,
-      firstName: pgGuestHouse.profileId.firstName,
+      firstName: pgGuestHouse?.profileId?.firstName,
       amount: pgGuestHouse.payments[0]?.amount,
       image: pgGuestHouse.payments[0]?.image,
       approvedby: pgGuestHouse.approvedby

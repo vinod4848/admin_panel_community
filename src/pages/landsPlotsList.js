@@ -233,7 +233,7 @@ const LandsPlotsList = () => {
     .map((landPlot, index) => ({
       key: index,
       ...landPlot,
-      firstName: landPlot.profileId.firstName,
+      firstName: landPlot?.profileId?.firstName,
       amount: landPlot.payments[0]?.amount,
       image: landPlot.payments[0]?.image,
       approvedby: landPlot.approvedby

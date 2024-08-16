@@ -55,7 +55,7 @@ const Joblist = () => {
       .map((job, index) => ({
         key: index + 1,
         title: job.title,
-        approvedby: job.approvedby.username,
+        approvedby: job?.approvedby?.username,
         company: job.company,
         location: job.location,
         description: job.description,

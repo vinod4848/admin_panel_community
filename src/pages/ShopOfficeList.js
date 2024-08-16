@@ -126,7 +126,7 @@ const ShopOfficeList = () => {
     .map((office, index) => ({
       key: index,
       ...office,
-      firstName: office.profileId.firstName,
+      firstName: office?.profileId?.firstName,
       amount: office.payments[0]?.amount,
       image: office.payments[0]?.image,
       approvedby: office.approvedby

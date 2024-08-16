@@ -225,7 +225,7 @@ const FashionList = () => {
     .map((item, index) => ({
       key: index,
       ...item,
-      firstName: item.profileId.firstName,
+      firstName: item?.profileId?.firstName,
       amount: item.payments[0]?.amount,
       image: item.payments[0]?.image,
       approvedby: item.approvedby ? item.approvedby.username || "N/A" : "N/A",

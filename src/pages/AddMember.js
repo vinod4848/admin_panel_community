@@ -6,68 +6,94 @@ import { base_url } from "../utils/base_url";
 
 const AddMember = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState(null);
+  const [manualData, setManualData] = useState({
+    name: "",
+    phone: "",
+    gender: "",
+  });
 
-  const handleChange = (e) => {
-    const selectedFile = e.target.files[0];
-
-    if (selectedFile && selectedFile.type !== "text/csv") {
-      toast.error("Only CSV files are supported.");
-      setFile(null);
-      return;
-    }
-
-    setFile(selectedFile);
+  const handleManualChange = (e) => {
+    const { name, value } = e.target;
+    setManualData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleManualSubmit = async (e) => {
     e.preventDefault();
+    const { name, phone, gender } = manualData;
 
-    if (!file) {
-      toast.error("Please select a file to upload.");
+    if (!name || !phone || !gender) {
+      toast.error("Please fill in all fields.");
       return;
     }
 
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await axios.post(`${base_url}uploadMemberdata`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const response = await axios.post(`${base_url}members`, {
+        name,
+        phone,
+        gender,
       });
 
-      // Handle response from the server
-      if (response.status === 200) {
-        toast.success("File uploaded successfully!");
+      if (response.status === 201) {
+        toast.success("Member added successfully!");
         navigate("/admin/member-list");
       } else {
-        toast.error("Error uploading file. Please try again.");
+        toast.error("Error adding member. Please try again.");
       }
     } catch (error) {
-      console.error("Error uploading file:", error);
-      toast.error("Error uploading file. Please try again.");
+      console.error("Error adding member:", error);
+      toast.error("Error adding member. Please try again.");
     }
   };
 
   return (
     <div className="container mt-5">
-      <h1>Upload CSV File</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Add Member</h1>
+      <form onSubmit={handleManualSubmit}>
         <div className="mb-3">
-          <label htmlFor="file">Upload CSV File</label>
+          <label htmlFor="name">Name</label>
           <input
-            type="file"
-            id="file"
-            accept=".csv"
+            type="text"
+            id="name"
+            name="name"
             className="form-control"
-            onChange={handleChange}
+            value={manualData.name}
+            onChange={handleManualChange}
+            required
           />
         </div>
         <div className="mb-3">
-          <button type="submit" className="btn btn-success form-control">
-            Upload CSV
+          <label htmlFor="phone">Phone</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            className="form-control"
+            value={manualData.phone}
+            onChange={handleManualChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="gender">Gender</label>
+          <select
+            id="gender"
+            name="gender"
+            className="form-control"
+            value={manualData.gender}
+            onChange={handleManualChange}
+            required
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <button type="submit" className="btn btn-primary form-control">
+            Add Member
           </button>
         </div>
       </form>
