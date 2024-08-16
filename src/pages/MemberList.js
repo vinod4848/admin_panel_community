@@ -62,15 +62,19 @@ const MemberList = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await axios.post(`${base_url}uploadMemberdata`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${base_url}uploadMemberdata`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.status === 200) {
         toast.success("File uploaded successfully!");
-        setFile(null); 
+        setFile(null);
         navigate("/admin/member-list");
         const updatedResponse = await axios.get(`${base_url}/members`);
         setMembers(updatedResponse.data);
@@ -90,7 +94,7 @@ const MemberList = () => {
     },
     { title: "Name", dataIndex: "name" },
     { title: "Gender", dataIndex: "gender" },
-    { title: "Membership ID", dataIndex: "membershipId" },
+    { title: "Phone", dataIndex: "membershipId" },
     {
       title: "Action",
       dataIndex: "",
@@ -105,24 +109,35 @@ const MemberList = () => {
   ];
 
   return (
-    <div>
-      {/* <h1>Member List</h1> */}
-      <div className="mb-3 d-flex justify-content-between align-items-center">
-        <h3>Upload CSV File</h3>
-        <form onSubmit={handleSubmit} className="d-flex">
-          <input
-            type="file"
-            accept=".csv"
-            className="form-control me-2"
-            onChange={handleChange}
-          />
+    <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3 className="mb-0">Upload CSV File</h3>
+        <form onSubmit={handleSubmit} className="d-flex align-items-center">
+          <div className="input-group me-2">
+            <input
+              type="file"
+              accept=".csv"
+              className="form-control"
+              onChange={handleChange}
+              aria-label="Upload CSV File"
+            />
+          </div>
           <button type="submit" className="btn btn-success">
-            Upload CSV
+            <i className="bi bi-upload"></i> Upload
           </button>
         </form>
       </div>
-      <Table dataSource={members} columns={columns} rowKey="_id" />
+  
+      <div className="table-responsive">
+        <Table
+          dataSource={members}
+          columns={columns}
+          rowKey="_id"
+          className="table"
+        />
+      </div>
     </div>
+  
   );
 };
 
