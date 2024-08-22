@@ -92,9 +92,9 @@ const UserListV1 = () => {
                   {profile.locked ? "Unblock" : "Block"}
                 </button>
               </div>
-              {profile.image ? (
+              {profile.url ? (
                 <img
-                  src={profile.image}
+                  src={profile.url}
                   className="card-img-top"
                   alt="Profile"
                   style={{ height: "150px", objectFit: "cover" }}

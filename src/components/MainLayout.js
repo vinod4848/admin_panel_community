@@ -1,9 +1,9 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
-import { IoMdNotifications } from "react-icons/io";
+// import { IoMdNotifications } from "react-icons/io";
 import { ImBlog } from "react-icons/im";
-import { FaBlogger, FaEnvelope, FaEnvelopeOpen,FaUsers  } from "react-icons/fa";
+import { FaBlogger, FaEnvelope, FaEnvelopeOpen, FaUsers } from "react-icons/fa";
 import { Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -58,6 +58,23 @@ const MainLayout = () => {
               icon: <AiOutlineDashboard className="fs-4" />,
               label: "Dashbord",
             },
+            {
+              key: "Committee",
+              icon: <FaUsers className="fs-4" />,
+              label: "Committee",
+              children: [
+                {
+                  key: "Committee",
+                  icon: <FaUsers className="fs-4" />,
+                  label: "Committee",
+                },
+                {
+                  key: "Committee-List",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "Committee List",
+                },
+              ],
+            },
 
             // for usery Manegment start
             // {
@@ -90,12 +107,12 @@ const MainLayout = () => {
 
             {
               key: "member",
-              icon: <FaUsers  className="fs-4" />,
+              icon: <FaUsers className="fs-4" />,
               label: "Members",
-             children: [
+              children: [
                 {
                   key: "member",
-                  icon: <FaUsers  className="fs-4" />,
+                  icon: <FaUsers className="fs-4" />,
                   label: "Add Member",
                 },
                 {
@@ -537,12 +554,12 @@ const MainLayout = () => {
             }
           )}
           <div className="d-flex gap-4 align-items-center">
-            <div className="position-relative">
+            {/* <div className="position-relative">
               <IoMdNotifications className="fs-4" />
               <span className="badge bg-danger rounded-circle p-1 position-absolute">
                 2
               </span>
-            </div>
+            </div> */}
             <div className="d-flex  gap-3 align-items-center">
               <div className="img">
                 <img

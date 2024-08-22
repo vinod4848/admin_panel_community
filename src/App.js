@@ -66,6 +66,8 @@ import OtherList from "./pages/OtherList";
 import PaymentListofline from "./pages/payment";
 import AddMember from "./pages/AddMember";
 import MemberList from "./pages/MemberList";
+import MemberProfilelist from "./pages/MemberProfilelist";
+import AddCommittee from "./pages/AddCommittee";
 
 function App() {
   return (
@@ -170,9 +172,11 @@ function App() {
           <Route path="package/:packagesId" element={<AddPackage />} />
           <Route path="payment-list" element={<PaymentList />} />
           <Route path="other-list" element={<OtherList />} />
-          <Route path="payments-listofline" element={<PaymentListofline/>} />
-          <Route path="member" element={<AddMember/>} />
-          <Route path="Member-list" element={<MemberList/>} />
+          <Route path="payments-listofline" element={<PaymentListofline />} />
+          <Route path="member" element={<AddMember />} />
+          <Route path="Member-list" element={<MemberList />} />
+          <Route path="Committee-List" element={<MemberProfilelist />} />
+          <Route path="Committee" element={<AddCommittee />} />
         </Route>
       </Routes>
     </Router>
