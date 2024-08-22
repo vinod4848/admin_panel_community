@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Table, Button, message, Modal, Input, Form } from "antd";
+import { Table, Button, message, Modal, Input, Form, Upload } from "antd";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { base_url } from "../utils/base_url";
+import { UploadOutlined } from "@ant-design/icons";
 
 const MemberProfilelist = () => {
   const [members, setMembers] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
+  const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -38,6 +40,7 @@ const MemberProfilelist = () => {
     try {
       const response = await axios.get(`${base_url}/memberProfiles/${record._id}`);
       setEditingMember(response.data);
+      setFileList([]);
       setIsModalVisible(true);
     } catch (error) {
       console.error(error);
@@ -47,10 +50,19 @@ const MemberProfilelist = () => {
 
   const handleUpdate = async (values) => {
     try {
-      await axios.put(
-        `${base_url}/memberProfiles/${editingMember._id}`,
-        values
-      );
+      const formData = new FormData();
+      Object.keys(values).forEach((key) => {
+        formData.append(key, values[key]);
+      });
+
+      if (fileList.length > 0) {
+        formData.append("profileImage", fileList[0]);
+      }
+
+      await axios.put(`${base_url}/memberProfiles/${editingMember._id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
       setMembers((prevMembers) =>
         prevMembers.map((member) =>
           member._id === editingMember._id ? { ...member, ...values } : member
@@ -130,9 +142,6 @@ const MemberProfilelist = () => {
           <Form
             initialValues={{
               ...editingMember,
-              dateOfJoining: new Date(editingMember.dateOfJoining)
-                .toISOString()
-                .split("T")[0],
             }}
             onFinish={handleUpdate}
             layout="vertical"
@@ -154,6 +163,19 @@ const MemberProfilelist = () => {
             </Form.Item>
             <Form.Item label="Phone" name="phone">
               <Input />
+            </Form.Item>
+            <Form.Item label="Profile Image" name="profileImage">
+              <Upload
+                listType="picture"
+                fileList={fileList}
+                beforeUpload={(file) => {
+                  setFileList([file]);
+                  return false;
+                }}
+                onRemove={() => setFileList([])}
+              >
+                <Button icon={<UploadOutlined />}>Upload Image</Button>
+              </Upload>
             </Form.Item>
             <Button type="primary" htmlType="submit">
               Update Member

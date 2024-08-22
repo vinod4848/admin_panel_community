@@ -13,7 +13,6 @@ const AddCommittee = () => {
     position: "",
     department: "",
     email: "",
-    dateOfJoining: "",
     education: "",
     profileImage: null,
   });
@@ -37,7 +36,6 @@ const AddCommittee = () => {
         position,
         department,
         email,
-        dateOfJoining,
         education,
         profileImage,
       } = manualData;
@@ -49,7 +47,6 @@ const AddCommittee = () => {
         !position ||
         !department ||
         !email ||
-        !dateOfJoining ||
         !education
       ) {
         toast.error("Please fill in all fields.");
@@ -63,7 +60,6 @@ const AddCommittee = () => {
       formData.append("position", position);
       formData.append("department", department);
       formData.append("email", email);
-      formData.append("dateOfJoining", dateOfJoining);
       formData.append("education", education);
       if (profileImage) {
         formData.append("profileImage", profileImage);
