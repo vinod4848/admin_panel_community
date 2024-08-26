@@ -533,6 +533,23 @@ const MainLayout = () => {
                 },
               ],
             },
+            {
+              key: "ContcatInfo",
+              icon: <FaUsers className="fs-4" />,
+              label: "ContcatInfo",
+              children: [
+                {
+                  key: "ContcatInfo",
+                  icon: <FaUsers className="fs-4" />,
+                  label: "ContcatInfo",
+                },
+                {
+                  key: "ContcatInfo-List",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "ContcatInfo List",
+                },
+              ],
+            },
           ]}
         />
       </Sider>

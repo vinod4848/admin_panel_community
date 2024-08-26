@@ -68,6 +68,8 @@ import AddMember from "./pages/AddMember";
 import MemberList from "./pages/MemberList";
 import MemberProfilelist from "./pages/MemberProfilelist";
 import AddCommittee from "./pages/AddCommittee";
+import AddContactInfo from "./pages/AddContcatInfo";
+import ContactInfoList from "./pages/ContcatInfoList";
 
 function App() {
   return (
@@ -177,6 +179,8 @@ function App() {
           <Route path="Member-list" element={<MemberList />} />
           <Route path="Committee-List" element={<MemberProfilelist />} />
           <Route path="Committee" element={<AddCommittee />} />
+          <Route path="ContcatInfo" element={<AddContactInfo />} />
+          <Route path="ContcatInfo-List" element={<ContactInfoList />} />
         </Route>
       </Routes>
     </Router>
