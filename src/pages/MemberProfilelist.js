@@ -12,16 +12,17 @@ const MemberProfilelist = () => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await axios.get(`${base_url}/memberProfiles`);
-        setMembers(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchMembers();
   }, []);
+
+  const fetchMembers = async () => {
+    try {
+      const response = await axios.get(`${base_url}/memberProfiles`);
+      setMembers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleDelete = async (record) => {
     try {
@@ -40,7 +41,7 @@ const MemberProfilelist = () => {
     try {
       const response = await axios.get(`${base_url}/memberProfiles/${record._id}`);
       setEditingMember(response.data);
-      setFileList([]);
+      setFileList([]); // Clear file list when editing
       setIsModalVisible(true);
     } catch (error) {
       console.error(error);
@@ -52,22 +53,21 @@ const MemberProfilelist = () => {
     try {
       const formData = new FormData();
       Object.keys(values).forEach((key) => {
-        formData.append(key, values[key]);
+        if (key === "profileImage") {
+          if (fileList.length > 0) {
+            formData.append(key, fileList[0]);
+          }
+        } else {
+          formData.append(key, values[key]);
+        }
       });
-
-      if (fileList.length > 0) {
-        formData.append("profileImage", fileList[0]);
-      }
 
       await axios.put(`${base_url}/memberProfiles/${editingMember._id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setMembers((prevMembers) =>
-        prevMembers.map((member) =>
-          member._id === editingMember._id ? { ...member, ...values } : member
-        )
-      );
+      fetchMembers(); 
+
       message.success("Member updated successfully");
       setIsModalVisible(false);
       setEditingMember(null);

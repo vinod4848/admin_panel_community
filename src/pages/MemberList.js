@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { base_url } from "../utils/base_url";
 import axios from "axios";
-import { Table, Button, message } from "antd";
+import { Table, Button, Input, message } from "antd";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const MemberList = () => {
   const [members, setMembers] = useState([]);
+  const [filteredMembers, setFilteredMembers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
@@ -17,6 +19,7 @@ const MemberList = () => {
         const response = await axios.get(`${base_url}/members`);
         const data = response.data;
         setMembers(data);
+        setFilteredMembers(data);
       } catch (error) {
         console.error(error);
       }
@@ -30,6 +33,9 @@ const MemberList = () => {
       await axios.delete(`${base_url}/members/${record._id}`);
       message.success("Member deleted successfully");
       setMembers((prevMembers) =>
+        prevMembers.filter((member) => member._id !== record._id)
+      );
+      setFilteredMembers((prevMembers) =>
         prevMembers.filter((member) => member._id !== record._id)
       );
     } catch (error) {
@@ -78,6 +84,7 @@ const MemberList = () => {
         navigate("/admin/member-list");
         const updatedResponse = await axios.get(`${base_url}/members`);
         setMembers(updatedResponse.data);
+        setFilteredMembers(updatedResponse.data);
       } else {
         toast.error("Error uploading file. Please try again.");
       }
@@ -85,6 +92,19 @@ const MemberList = () => {
       console.error("Error uploading file:", error);
       toast.error("Error uploading file. Please try again.");
     }
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
+
+    const filtered = members.filter(
+      (member) =>
+        member.name.toLowerCase().includes(value) ||
+        member.membershipId.toLowerCase().includes(value)
+    );
+
+    setFilteredMembers(filtered);
   };
 
   const columns = [
@@ -127,17 +147,25 @@ const MemberList = () => {
           </button>
         </form>
       </div>
-  
+
+      <div className="mb-4">
+        <Input
+          placeholder="Search by name or phone"
+          value={searchTerm}
+          onChange={handleSearch}
+          style={{ maxWidth: "100%", width: "100%" }}
+        />
+      </div>
+
       <div className="table-responsive">
         <Table
-          dataSource={members}
+          dataSource={filteredMembers}
           columns={columns}
           rowKey="_id"
           className="table"
         />
       </div>
     </div>
-  
   );
 };
 
