@@ -66,12 +66,24 @@ const MainLayout = () => {
                 {
                   key: "Committee",
                   icon: <FaUsers className="fs-4" />,
-                  label: "Committee",
+                  label: "Add Committee",
                 },
                 {
                   key: "Committee-List",
                   icon: <ImBlog className="fs-4" />,
                   label: "Committee List",
+                },
+              ],
+            },
+            {
+              key: "DepartmentCategory",
+              icon: <FaUsers className="fs-4" />,
+              label: "DepartmentCategory",
+              children: [
+                {
+                  key: "DepartmentCategory-List",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "DepartmentCategory List",
                 },
               ],
             },

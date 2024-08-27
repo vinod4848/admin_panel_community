@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,6 +6,7 @@ import { base_url } from "../utils/base_url";
 
 const AddCommittee = () => {
   const navigate = useNavigate();
+  const [departments, setDepartments] = useState([]);
   const [manualData, setManualData] = useState({
     name: "",
     phone: "",
@@ -16,6 +17,24 @@ const AddCommittee = () => {
     education: "",
     profileImage: null,
   });
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await axios.get(`${base_url}department`);
+        if (response.status === 200) {
+          setDepartments(response.data);
+        } else {
+          toast.error("Failed to load departments.");
+        }
+      } catch (error) {
+        console.error("Error fetching departments:", error);
+        toast.error("Error fetching departments. Please try again.");
+      }
+    };
+
+    fetchDepartments();
+  }, []);
 
   const handleManualChange = useCallback((e) => {
     const { name, value, type, files } = e.target;
@@ -101,13 +120,19 @@ const AddCommittee = () => {
             label: "Gender",
             name: "gender",
             type: "select",
-            options: ["Male", "Female"],
+            options: [
+              { label: "Male", value: "Male" },
+              { label: "Female", value: "Female" },
+            ],
           },
           {
             label: "Department",
             name: "department",
             type: "select",
-            options: ["Work Committee", "Board of trustees"],
+            options: departments.map((dept) => ({
+              label: dept.title,
+              
+            })),
           },
           { label: "Position", name: "position", type: "text" },
           { label: "Email", name: "email", type: "email" },
@@ -127,8 +152,8 @@ const AddCommittee = () => {
               >
                 <option value="">Select {label}</option>
                 {options.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.value} value={option.value}>
+                    {option.label}
                   </option>
                 ))}
               </select>

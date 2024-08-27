@@ -72,6 +72,8 @@ import AddContactInfo from "./pages/AddContcatInfo";
 import ContactInfoList from "./pages/ContcatInfoList";
 import AddAboutUs from "./pages/AddAboutUs";
 import AboutUsList from "./pages/AboutUsList";
+import DepartmentCategoryList from "./pages/DepartmentCategoryList";
+import AddDepartmentCategory from "./pages/AddDepartmentCategory";
 
 function App() {
   return (
@@ -185,6 +187,8 @@ function App() {
           <Route path="ContcatInfo-List" element={<ContactInfoList />} />
           <Route path="AboutUs-List" element={<AboutUsList />} />
           <Route path="AboutUs" element={<AddAboutUs />} />
+          <Route path="DepartmentCategory-List" element={<DepartmentCategoryList />} />
+          <Route path="DepartmentCategory" element={<AddDepartmentCategory />} />
         </Route>
       </Routes>
     </Router>
