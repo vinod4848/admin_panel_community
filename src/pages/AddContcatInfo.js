@@ -62,7 +62,7 @@ const AddContactInfo = () => {
 
         if (response.status === 201) {
           toast.success("Contact info added successfully!");
-          navigate("/admin/ContactInfo-List");
+          navigate("/admin/ContcatInfo-List");
         } else {
           toast.error("Error adding contact info. Please try again.");
         }

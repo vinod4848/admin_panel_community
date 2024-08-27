@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; 
 import { base_url } from "../utils/base_url";
 import "./ContactInfoList.css";
 
@@ -7,6 +8,7 @@ const ContactInfoList = () => {
   const [contactList, setContactList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchContactInfo = async () => {
@@ -36,12 +38,21 @@ const ContactInfoList = () => {
     }
   };
 
+  const handleAddContactInfo = () => {
+    navigate("/admin/ContcatInfo"); 
+  };
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="container">
       <h1>Contact Info List</h1>
+       <div className="d-flex justify-content-end">
+    <button className="btn btn-primary mb-3" onClick={handleAddContactInfo}>
+      Add Contact Info
+    </button>
+  </div>
       {contactList.map((contact) => (
         <div className="card" key={contact._id}>
           <div className="card-header">

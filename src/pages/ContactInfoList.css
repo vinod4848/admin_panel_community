@@ -4,11 +4,11 @@
   }
   
   .card {
-    border: 1px solid #ddd;
+    border: 1px solid #1dcdda;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #267b9f;
   }
   
   .card-header {
@@ -35,5 +35,12 @@
     text-align: center;
     margin-top: 20px;
     font-size: 1.25rem;
+  }
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-end {
+    justify-content: flex-end;
   }
   

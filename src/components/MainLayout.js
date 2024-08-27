@@ -538,15 +538,32 @@ const MainLayout = () => {
               icon: <FaUsers className="fs-4" />,
               label: "ContcatInfo",
               children: [
-                {
-                  key: "ContcatInfo",
-                  icon: <FaUsers className="fs-4" />,
-                  label: "ContcatInfo",
-                },
+                // {
+                //   key: "ContcatInfo",
+                //   icon: <FaUsers className="fs-4" />,
+                //   label: "ContcatInfo",
+                // },
                 {
                   key: "ContcatInfo-List",
                   icon: <ImBlog className="fs-4" />,
                   label: "ContcatInfo List",
+                },
+              ],
+            },
+            {
+              key: "AboutUs",
+              icon: <FaUsers className="fs-4" />,
+              label: "AboutUs",
+              children: [
+                // {
+                //   key: "AboutUs",
+                //   icon: <FaUsers className="fs-4" />,
+                //   label: "Add AboutUs",
+                // },
+                {
+                  key: "AboutUs-List",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "AboutUs List",
                 },
               ],
             },
