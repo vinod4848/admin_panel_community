@@ -39,6 +39,11 @@ const columns = [
   {
     title: "Actions",
     dataIndex: "action",
+    render: (action) => (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {action}
+      </div>
+    ),
   },
 ];
 

@@ -100,17 +100,17 @@ const CarList = () => {
       render: (_, record, index) => index + 1,
     },
     {
-      title: "Approved By",
+      title: "Approved",
       dataIndex: "approvedby",
     },
     {
-      title: "Post By",
+      title: "Post",
       dataIndex: "firstName",
     },
-    {
-      title: "Ad Title",
-      dataIndex: "adTitle",
-    },
+    // {
+    //   title: "Ad Title",
+    //   dataIndex: "adTitle",
+    // },
     {
       title: "Brand",
       dataIndex: "brand",
@@ -123,38 +123,38 @@ const CarList = () => {
       title: "Car Number",
       dataIndex: "number",
     },
-    {
-      title: "Fuel Type",
-      dataIndex: "fuelType",
-    },
-    {
-      title: "Transmission",
-      dataIndex: "transmission",
-    },
-    {
-      title: "Km Driven",
-      dataIndex: "kmDriven",
-    },
-    {
-      title: "Number of Owners",
-      dataIndex: "numberOfOwners",
-    },
+    // {
+    //   title: "Fuel Type",
+    //   dataIndex: "fuelType",
+    // },
+    // {
+    //   title: "Transmission",
+    //   dataIndex: "transmission",
+    // },
+    // {
+    //   title: "Km Driven",
+    //   dataIndex: "kmDriven",
+    // },
+    // {
+    //   title: "Number of Owners",
+    //   dataIndex: "numberOfOwners",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Images",
       dataIndex: "images",
@@ -176,12 +176,12 @@ const CarList = () => {
       ),
     },
     {
-      title: "Activation Amount",
+      title: "Amount",
       dataIndex: "amount",
     },
 
     {
-      title: "Payment Image",
+      title: "Image",
       dataIndex: "image",
       render: (image) => (
         <Space size={[8, 8]} wrap>
@@ -197,6 +197,16 @@ const CarList = () => {
       </Space>
       ),
     },
+    
+    {
+      title: "Status",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Button type="primary" onClick={() => handleToggleActive(record)}>
+          {isActive ? "Deactivate" : "Activate"}
+        </Button>
+      ),
+    },
     {
       title: "Action",
       dataIndex: "",
@@ -207,15 +217,6 @@ const CarList = () => {
           danger
           icon={<AiFillDelete style={{ color: "#da3838" }} />}
         />
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
-          {isActive ? "Deactivate" : "Activate"}
-        </Button>
       ),
     },
   ];

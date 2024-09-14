@@ -108,16 +108,18 @@ const MemberProfilelist = () => {
             type="primary"
             onClick={() => handleEdit(record)}
             icon={<AiFillEdit />}
-            className="mr-2"
+            style={{ marginRight: '8px' }} 
           />
           <Button
-            type="danger"
+            type="primary"
             onClick={() => handleDelete(record)}
-            icon={<AiFillDelete style={{ color: "#da3838" }} />}
+            icon={<AiFillDelete />}
+            style={{ backgroundColor: "#da3838", borderColor: "#da3838" }}
           />
         </>
       ),
-    },
+    }
+    
   ];
 
   return (

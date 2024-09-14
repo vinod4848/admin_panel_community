@@ -101,11 +101,11 @@ const BicyclesList = () => {
       render: (_, record, index) => index + 1,
     },
     {
-      title: "Approved By",
+      title: "Approved",
       dataIndex: "approvedby",
     },
     {
-      title: "Post By",
+      title: "Post",
       dataIndex: "firstName",
     },
     {
@@ -120,18 +120,18 @@ const BicyclesList = () => {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Images",
       dataIndex: "images",
@@ -153,12 +153,12 @@ const BicyclesList = () => {
       ),
     },
     {
-      title: "Activation Amount",
+      title: "Amount",
       dataIndex: "amount",
     },
 
     {
-      title: "Payment Image",
+      title: "Image",
       dataIndex: "image",
       render: (image) => (
         <Space size={[8, 8]} wrap>
@@ -174,6 +174,16 @@ const BicyclesList = () => {
       </Space>
       ),
     },
+    
+    {
+      title: "Status",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Button type="primary" onClick={() => handleToggleActive(record)}>
+          {isActive ? "Deactivate" : "Activate"}
+        </Button>
+      ),
+    },
     {
       title: "Action",
       dataIndex: "",
@@ -184,15 +194,6 @@ const BicyclesList = () => {
           danger
           icon={<AiFillDelete style={{ color: "#da3838" }} />}
         />
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
-          {isActive ? "Deactivate" : "Activate"}
-        </Button>
       ),
     },
   ];

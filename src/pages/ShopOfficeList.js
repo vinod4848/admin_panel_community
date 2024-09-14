@@ -152,46 +152,46 @@ const ShopOfficeList = () => {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Property type",
-      dataIndex: "shopOfficeType",
-    },
-    {
-      title: "carpetArea",
-      dataIndex: "carpetArea",
-    },
-    {
-      title: "maintenance",
-      dataIndex: "maintenance",
-    },
-    {
-      title: "carParking",
-      dataIndex: "carParking",
-    },
-    {
-      title: "washrooms",
-      dataIndex: "washrooms",
-    },
-    {
-      title: "furnishing",
-      dataIndex: "furnishing",
-    },
+    // {
+    //   title: "Property type",
+    //   dataIndex: "shopOfficeType",
+    // },
+    // {
+    //   title: "carpetArea",
+    //   dataIndex: "carpetArea",
+    // },
+    // {
+    //   title: "maintenance",
+    //   dataIndex: "maintenance",
+    // },
+    // {
+    //   title: "carParking",
+    //   dataIndex: "carParking",
+    // },
+    // {
+    //   title: "washrooms",
+    //   dataIndex: "washrooms",
+    // },
+    // {
+    //   title: "furnishing",
+    //   dataIndex: "furnishing",
+    // },
     {
       title: "Images",
       dataIndex: "images",

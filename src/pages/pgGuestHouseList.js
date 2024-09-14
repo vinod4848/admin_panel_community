@@ -113,42 +113,42 @@ const PgGuestHouseList = () => {
       title: "Post By",
       dataIndex: "firstName",
     },
-    {
-      title: "Property Type",
-      dataIndex: "subtype",
-    },
+    // {
+    //   title: "Property Type",
+    //   dataIndex: "subtype",
+    // },
     {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Furnishing",
-      dataIndex: "furnishing",
-    },
-    {
-      title: "Car Parking",
-      dataIndex: "carParking",
-    },
-    {
-      title: "Meals Included",
-      dataIndex: "mealsIncluded",
-    },
+    // {
+    //   title: "Furnishing",
+    //   dataIndex: "furnishing",
+    // },
+    // {
+    //   title: "Car Parking",
+    //   dataIndex: "carParking",
+    // },
+    // {
+    //   title: "Meals Included",
+    //   dataIndex: "mealsIncluded",
+    // },
     {
       title: "Images",
       dataIndex: "images",

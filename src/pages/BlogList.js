@@ -35,8 +35,14 @@ const columns = [
   {
     title: "Actions",
     dataIndex: "action",
+    render: (action) => (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {action}
+      </div>
+    ),
   },
 ];
+
 const truncateDescription = (text, maxLength) => {
   return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 };
@@ -45,9 +51,11 @@ const Bloglist = () => {
   const [blogId, setBlogId] = useState();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getBlog());
   }, [dispatch]);
+
   const blogState = useSelector((state) => state.blog.blogs);
 
   const transformBlogData = () => {
@@ -62,7 +70,7 @@ const Bloglist = () => {
         category: blog.category,
         image: blog.image,
         action: (
-          <>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link to={`/admin/blogs/${blog._id}`} className="fs-3 text-danger">
               <BiEdit />
             </Link>
@@ -72,7 +80,7 @@ const Bloglist = () => {
             >
               <MdOutlineDelete />
             </button>
-          </>
+          </div>
         ),
       };
     });

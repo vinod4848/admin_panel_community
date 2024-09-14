@@ -36,14 +36,14 @@ const columns = [
     title: "Contact Number",
     dataIndex: "contactNumber",
   },
-  {
-    title: "GST Number",
-    dataIndex: "gstNumber",
-  },
-  {
-    title: "Website",
-    dataIndex: "website",
-  },
+  // {
+  //   title: "GST Number",
+  //   dataIndex: "gstNumber",
+  // },
+  // {
+  //   title: "Website",
+  //   dataIndex: "website",
+  // },
   {
     title: "Locality",
     dataIndex: "locality",
@@ -53,10 +53,10 @@ const columns = [
     dataIndex: "businessArea",
   },
 
-  {
-    title: "Description",
-    dataIndex: "description",
-  },
+  // {
+  //   title: "Description",
+  //   dataIndex: "description",
+  // },
   {
     title: "Address",
     dataIndex: "address",
@@ -100,7 +100,7 @@ const Directorielist = () => {
       locality: directorie.locality,
       businessArea: directorie.businessArea,
       images: directorie.images,
-      description: directorie.description,
+      // description: directorie.description,
       address: directorie.address,
       action: (
         <button

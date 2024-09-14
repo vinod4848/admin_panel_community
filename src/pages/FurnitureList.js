@@ -102,7 +102,7 @@ const FurnitureList = () => {
       render: (_, record, index) => index + 1,
     },
     {
-      title: "Approved By",
+      title: "Approved",
       dataIndex: "approvedby",
     },
     {
@@ -113,30 +113,30 @@ const FurnitureList = () => {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Used",
-      dataIndex: "used",
-    },
-    {
-      title: "Furniture Type",
-      dataIndex: "furnitureType",
-    },
+    // {
+    //   title: "Used",
+    //   dataIndex: "used",
+    // },
+    // {
+    //   title: "Furniture Type",
+    //   dataIndex: "furnitureType",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Images",
       dataIndex: "images",
@@ -179,6 +179,16 @@ const FurnitureList = () => {
         </Space>
       ),
     },
+   
+    {
+      title: "Status",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Button type="primary" onClick={() => handleToggleActive(record)}>
+          {isActive ? "Deactivate" : "Activate"}
+        </Button>
+      ),
+    },
     {
       title: "Action",
       dataIndex: "",
@@ -191,15 +201,6 @@ const FurnitureList = () => {
             icon={<AiFillDelete style={{ color: "#da3838" }} />}
           />
         </>
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
-          {isActive ? "Deactivate" : "Activate"}
-        </Button>
       ),
     },
   ];

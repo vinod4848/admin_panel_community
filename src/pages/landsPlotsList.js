@@ -115,26 +115,26 @@ const LandsPlotsList = () => {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Property Type",
-      dataIndex: "type",
-    },
+    // {
+    //   title: "Property Type",
+    //   dataIndex: "type",
+    // },
     {
       title: "Property Images",
       dataIndex: "images",
@@ -182,6 +182,16 @@ const LandsPlotsList = () => {
       ),
     },
 
+   
+    {
+      title: "Status",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Button type="primary" onClick={() => handleToggleActive(record)}>
+          {isActive ? "Deactivate" : "Activate"}
+        </Button>
+      ),
+    },
     {
       title: "Action",
       dataIndex: "action",
@@ -195,15 +205,6 @@ const LandsPlotsList = () => {
             <AiFillDelete />
           </Button>
         </div>
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
-          {isActive ? "Deactivate" : "Activate"}
-        </Button>
       ),
     },
   ];

@@ -48,10 +48,10 @@ const DepartmentCategoryList = () => {
 
   return (
     <div className="container">
-      <h4>Department Category List</h4>
+      <h4>Department</h4>
       <div className="d-flex justify-content-end">
         <button className="btn btn-primary mb-3" onClick={handleAddContactInfo}>
-          Add Department Category
+          Add Department 
         </button>
       </div>
       {contactList.map((Department) => (

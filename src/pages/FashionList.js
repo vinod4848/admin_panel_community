@@ -103,7 +103,7 @@ const FashionList = () => {
       render: (_, record, index) => index + 1,
     },
     {
-      title: "Approved By",
+      title: "Approved",
       dataIndex: "approvedby",
     },
     {
@@ -114,26 +114,26 @@ const FashionList = () => {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Fashion for",
-      dataIndex: "fashionType",
-    },
+    // {
+    //   title: "Fashion for",
+    //   dataIndex: "fashionType",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "Landmark",
-      dataIndex: "landmark",
-    },
+    // {
+    //   title: "Landmark",
+    //   dataIndex: "landmark",
+    // },
     {
       title: "Images",
       dataIndex: "images",
@@ -177,6 +177,16 @@ const FashionList = () => {
       ),
     },
 
+    
+    {
+      title: "Status",
+      dataIndex: "isActive",
+      render: (isActive, record) => (
+        <Button type="primary" onClick={() => handleToggleActive(record)}>
+          {isActive ? "Deactivate" : "Activate"}
+        </Button>
+      ),
+    },
     {
       title: "Action",
       dataIndex: "",
@@ -188,15 +198,6 @@ const FashionList = () => {
             icon={<AiFillDelete style={{ color: "#da3838" }} />}
           />
         </>
-      ),
-    },
-    {
-      title: "Status",
-      dataIndex: "isActive",
-      render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
-          {isActive ? "Deactivate" : "Activate"}
-        </Button>
       ),
     },
   ];

@@ -115,54 +115,54 @@ const LandsPlotsList = () => {
       title: "Ad Title",
       dataIndex: "adTitle",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-    },
-    {
-      title: "Facing",
-      dataIndex: "facing",
-    },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    // },
+    // {
+    //   title: "Facing",
+    //   dataIndex: "facing",
+    // },
     {
       title: "Price",
       dataIndex: "price",
     },
-    {
-      title: "Property Type",
-      dataIndex: "propertyType",
-    },
+    // {
+    //   title: "Property Type",
+    //   dataIndex: "propertyType",
+    // },
     {
       title: "Furnishing",
       dataIndex: "furnishing",
     },
-    {
-      title: "Builtup Area (sq.ft)",
-      dataIndex: "superBuiltupArea",
-    },
-    {
-      title: "Carpet Area (sq.ft)",
-      dataIndex: "carpetArea",
-    },
-    {
-      title: "Bathrooms",
-      dataIndex: "bathrooms",
-    },
-    {
-      title: "Maintenance Monthly",
-      dataIndex: "maintenanceMonthly",
-    },
-    {
-      title: "Total Floors",
-      dataIndex: "totalFloors",
-    },
-    {
-      title: "Floor No",
-      dataIndex: "floorNo",
-    },
-    {
-      title: "Car Parking",
-      dataIndex: "carParking",
-    },
+    // {
+    //   title: "Builtup Area (sq.ft)",
+    //   dataIndex: "superBuiltupArea",
+    // },
+    // {
+    //   title: "Carpet Area (sq.ft)",
+    //   dataIndex: "carpetArea",
+    // },
+    // {
+    //   title: "Bathrooms",
+    //   dataIndex: "bathrooms",
+    // },
+    // {
+    //   title: "Maintenance Monthly",
+    //   dataIndex: "maintenanceMonthly",
+    // },
+    // {
+    //   title: "Total Floors",
+    //   dataIndex: "totalFloors",
+    // },
+    // {
+    //   title: "Floor No",
+    //   dataIndex: "floorNo",
+    // },
+    // {
+    //   title: "Car Parking",
+    //   dataIndex: "carParking",
+    // },
 
     {
       title: "Images",
@@ -185,22 +185,6 @@ const LandsPlotsList = () => {
           ) : (
             <p>No image available</p>
           )}
-        </div>
-      ),
-    },
-
-    {
-      title: "Action",
-      dataIndex: "action",
-      render: (text, record) => (
-        <div>
-          <Button
-            onClick={() => showDeleteModal(record._id)}
-            type="text"
-            danger
-          >
-            <AiFillDelete />
-          </Button>
         </div>
       ),
     },
@@ -235,6 +219,21 @@ const LandsPlotsList = () => {
         <Button type="primary" onClick={() => handleToggleActive(record)}>
           {isActive ? "Deactivate" : "Activate"}
         </Button>
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      render: (text, record) => (
+        <div>
+          <Button
+            onClick={() => showDeleteModal(record._id)}
+            type="text"
+            danger
+          >
+            <AiFillDelete />
+          </Button>
+        </div>
       ),
     },
   ];

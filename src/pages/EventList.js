@@ -46,6 +46,11 @@ const columns = [
   {
     title: "Actions",
     dataIndex: "action",
+    render: (action) => (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {action}
+      </div>
+    ),
   },
 ];
 
@@ -53,9 +58,11 @@ const Eventlist = () => {
   const [eventId, setEventId] = useState();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getEvent());
   }, [dispatch]);
+  
   const eventState = useSelector((state) => state.event.events);
 
   const transformEventData = () => {
@@ -72,7 +79,7 @@ const Eventlist = () => {
         date: event.date,
         address: event.address,
         action: (
-          <>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link
               to={`/admin/events/${event._id}`}
               className="fs-3 text-danger"
@@ -85,7 +92,7 @@ const Eventlist = () => {
             >
               <MdOutlineDelete />
             </button>
-          </>
+          </div>
         ),
       }));
   };
@@ -109,7 +116,7 @@ const Eventlist = () => {
 
   return (
     <div>
-       <h3 className="mb-4 title" style={{ color: 'green' }}>
+      <h3 className="mb-4 title" style={{ color: 'green' }}>
         Upcoming Event
       </h3>
       <div>

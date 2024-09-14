@@ -1,5 +1,5 @@
 import { Table, Button } from "antd";
-import moment from "moment";
+// import moment from "moment";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
 import { useEffect, useState } from "react";
@@ -13,19 +13,19 @@ const columns = [
   { title: "Title", dataIndex: "title" },
   { title: "Company", dataIndex: "company" },
   { title: "Location", dataIndex: "location" },
-  { title: "Description", dataIndex: "description" },
-  { title: "Responsibilities", dataIndex: "responsibilities" },
-  { title: "Qualifications", dataIndex: "qualifications" },
-  { title: "Skills", dataIndex: "skills" },
-  { title: "Employment Type", dataIndex: "employmentType" },
-  { title: "Experience Level", dataIndex: "experienceLevel" },
+  // { title: "Description", dataIndex: "description" },
+  // { title: "Responsibilities", dataIndex: "responsibilities" },
+  // { title: "Qualifications", dataIndex: "qualifications" },
+  // { title: "Skills", dataIndex: "skills" },
+  // { title: "Employment Type", dataIndex: "employmentType" },
+  // { title: "Experience Level", dataIndex: "experienceLevel" },
   { title: "Education Level", dataIndex: "educationLevel" },
   { title: "Salary", dataIndex: "salary" },
-  {
-    title: "Application Deadline",
-    dataIndex: "applicationDeadline",
-    render: (deadline) => moment(deadline).format("YYYY-MM-DD"),
-  },
+  // {
+  //   title: "Application Deadline",
+  //   dataIndex: "applicationDeadline",
+  //   render: (deadline) => moment(deadline).format("YYYY-MM-DD"),
+  // },
   { title: "Contact Email", dataIndex: "contactEmail" },
   { title: "Activate", dataIndex: "activateDeactivate" },
 ];
@@ -49,15 +49,15 @@ const JobListApprovalPending = () => {
         title: job.title,
         company: job.company,
         location: job.location,
-        description: job.description,
-        responsibilities: job.responsibilities,
-        qualifications: job.qualifications,
-        skills: job.skills,
-        employmentType: job.employmentType,
-        experienceLevel: job.experienceLevel,
+        // description: job.description,
+        // responsibilities: job.responsibilities,
+        // qualifications: job.qualifications,
+        // skills: job.skills,
+        // employmentType: job.employmentType,
+        // experienceLevel: job.experienceLevel,
         educationLevel: job.educationLevel,
         salary: job.salary,
-        applicationDeadline: job.applicationDeadline,
+        // applicationDeadline: job.applicationDeadline,
         contactEmail: job.contactEmail,
         activateDeactivate: (
           <Button

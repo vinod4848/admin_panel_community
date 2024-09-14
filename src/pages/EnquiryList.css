@@ -1,59 +1,44 @@
-.delete-btn {
-    background-color: #f44336;
-    color: white;
-    padding: 4px 8px;
-    border: none;
-    border-radius: 4px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.delete-btn:hover {
-    background-color: #d32f2f;
-}
-
-.action-cell {
-    display: flex;
-    align-items: center;
-}
-
-.full-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .enquiry-list-container {
-    width: 80%;
-    max-width: 800px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.enquiry-list-container h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.enquiry-table {
-    width: 100%;
+    width: 100%; 
+    max-width: 100%; 
+    margin: 0 auto; 
+    padding: 20px; 
+  }
+  
+  .enquiry-table {
+    width: 100%; 
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.enquiry-table th,
-.enquiry-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-.enquiry-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  }
+  
+  .enquiry-table th,
+  .enquiry-table td {
+    padding: 12px;
+    border: 1px solid #ddd; 
     text-align: left;
-}
+  }
+  
+  .enquiry-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .action-cell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .action-cell select {
+    margin-right: 8px;
+  }
+  
+  .delete-btn {
+    background-color: #da3838;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c23232; 
+  }
+  

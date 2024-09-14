@@ -7,8 +7,6 @@ import {
   getEvent,
   updateAEvent,
 } from "../features/event/eventSlice";
-// import { Link } from "react-router-dom";
-// import { BiEdit } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
 import CustomModel from "../components/CustomModel";
 import axios from "axios";
@@ -57,6 +55,11 @@ const columns = [
   {
     title: "Actions",
     dataIndex: "action",
+    render: (action) => (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {action}
+      </div>
+    ),
   },
 ];
 
