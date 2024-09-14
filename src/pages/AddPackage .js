@@ -56,7 +56,7 @@ const AddPackage = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{packagesId ? "Update Package" : "Add Package"}</h1>
+      <h4>{packagesId ? "Update Package" : "Add Package"}</h4>
       <form onSubmit={handleSubmit}>
         {Object.entries(packageData).map(([key, value]) => (
           <div className="mb-3" key={key}>

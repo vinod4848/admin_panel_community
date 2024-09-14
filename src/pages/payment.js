@@ -20,7 +20,7 @@ const PaymentListofline = () => {
 
   const fetchPayments = async () => {
     try {
-      const response = await axios.get(`${base_url}/paymentsofline`);
+      const response = await axios.get(`${base_url}/paymentslisting`);
       setPayments(response.data.data);
     } catch (error) {
       setError(error.message);
@@ -53,14 +53,14 @@ const PaymentListofline = () => {
         const formData = new FormData();
         formData.append("image", newImage);
         const uploadResponse = await axios.put(
-          `${base_url}/paymentsofline/${currentPayment._id}`,
+          `${base_url}/paymentslisting/${currentPayment._id}`,
           formData
         );
         updatedPayment.image = uploadResponse.data.imageUrl;
       }
 
       await axios.put(
-        `${base_url}/paymentsofline/${currentPayment._id}`,
+        `${base_url}/paymentslisting/${currentPayment._id}`,
         updatedPayment
       );
 
@@ -100,7 +100,7 @@ const PaymentListofline = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Payment Model</th>
+            <th>Payment for</th>
             <th>Amount</th>
             <th>Image</th>
             <th>Actions</th>

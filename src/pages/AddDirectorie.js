@@ -105,7 +105,7 @@ const AddDirectory = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{directoryId ? "Edit Directory" : "Add Directory"}</h1>
+      <h4>{directoryId ? "Edit Directory" : "Add Directory"}</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label> Name</label>

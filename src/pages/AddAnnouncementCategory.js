@@ -66,7 +66,7 @@ const AddAnnouncementCategory = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{id ? "Edit" : "Add"} Announcement Category</h1>
+      <h4>{id ? "Edit" : "Add"} Announcement Category</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Category Name</label>

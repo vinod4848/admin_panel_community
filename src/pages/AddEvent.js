@@ -119,7 +119,7 @@ const AddEvent = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{eventId ? "Edit Event" : "Add Event"}</h1>
+      <h4>{eventId ? "Edit Event" : "Add Event"}</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title</label>

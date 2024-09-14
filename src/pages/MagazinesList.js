@@ -54,7 +54,7 @@ const MagazinesList = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Magazines List</h1>
+      <h4>Magazines List</h4>
       <ul style={{ listStyleType: "none", padding: 0 }}>
         {magazines.map((magazine) => (
           <li key={magazine._id}>

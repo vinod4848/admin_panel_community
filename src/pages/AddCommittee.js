@@ -111,7 +111,7 @@ const AddCommittee = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Committee</h1>
+      <h4>Add Committee</h4>
       <form onSubmit={handleManualSubmit}>
         {[
           { label: "Name", name: "name", type: "text" },

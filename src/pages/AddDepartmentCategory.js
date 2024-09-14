@@ -50,7 +50,7 @@ const AddDepartmentCategory = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Department</h1>
+      <h4>Add Department</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title">Title</label>

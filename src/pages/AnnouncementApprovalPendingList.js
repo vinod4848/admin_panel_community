@@ -14,7 +14,15 @@ const AnnouncementApprovalPendingList = () => {
   useEffect(() => {
     axios
       .get(`${base_url}/announcements`)
-      .then((response) => setAnnouncements(response.data))
+      .then((response) => {
+        console.log('API Response Data:', response.data); 
+        if (Array.isArray(response?.data?.data)) {
+          setAnnouncements(response?.data?.data);
+        } else {
+          console.error("Expected an array from the API response");
+          setAnnouncements([]); 
+        }
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
@@ -57,13 +65,13 @@ const AnnouncementApprovalPendingList = () => {
     axios
       .put(`${base_url}/updateAnnouncementStatus/${announcementId}`, {
         isActive: true,
-        approvedby: getUserData?._id || "", // Update approvedby with user data
+        approvedby: getUserData?._id || "",
       })
       .then((response) => {
         if (response.status !== 200) {
           throw new Error("Failed to activate announcement");
         }
-        // Update the local state with the updated isActive status
+
         setAnnouncements((prevAnnouncements) =>
           prevAnnouncements.map((announcement) =>
             announcement._id === announcementId
@@ -93,59 +101,59 @@ const AnnouncementApprovalPendingList = () => {
           </tr>
         </thead>
         <tbody>
-          {announcements
-            .filter((announcement) => !announcement.isActive)
-            .map((filteredAnnouncement) => (
-              <tr key={filteredAnnouncement._id}>
-                <td>
-                  {filteredAnnouncement.createdBy
-                    ? filteredAnnouncement.createdBy.username || "Not Available"
-                    : filteredAnnouncement.profileId?.firstName ||
-                      "Not Available"}
-                </td>
-                <td>{filteredAnnouncement.announcementType}</td>
-                <td>{filteredAnnouncement.description}</td>
-                <td>{formatDate(filteredAnnouncement.date)}</td>
-                <td>
-                  <Image
-                    src={filteredAnnouncement.image}
-                    alt="Announcement"
-                    style={{ maxWidth: "100px", maxHeight: "100px" }}
-                    thumbnail
-                  />
-                </td>
-                <td>{filteredAnnouncement.payments[0]?.amount || "N/A"}</td>
-                <td>
-                  <Space size={[8, 8]} wrap>
-                    {filteredAnnouncement.payments[0]?.image ? (
-                      <Image
-                        src={filteredAnnouncement.payments[0]?.image}
-                        alt="Payment"
-                        style={{ width: "70px", height: "70px", marginBottom: "8px" }}
-                      />
-                    ) : (
-                      <span>N/A</span>
-                    )}
-                  </Space>
-                </td>
-                <td>
-                  <Button
-                    variant="danger"
-                    style={{ width: "83px", marginLeft: "5px" }}
-                    onClick={() => handleShowModal(filteredAnnouncement)}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    variant="success"
-                    style={{ marginLeft: "5px", marginTop: "5px" }}
-                    onClick={() => handleActivate(filteredAnnouncement._id)}
-                  >
-                    Activate
-                  </Button>
-                </td>
-              </tr>
-            ))}
+          {Array.isArray(announcements) &&
+            announcements
+              .filter((announcement) => !announcement.isActive)
+              .map((filteredAnnouncement) => (
+                <tr key={filteredAnnouncement._id}>
+                  <td>
+                    {filteredAnnouncement.approvedby
+                      ? filteredAnnouncement.approvedby?.username || "Not Available"
+                      : filteredAnnouncement.profileId?.firstName || "Not Available"}
+                  </td>
+                  <td>{filteredAnnouncement.announcementType}</td>
+                  <td>{filteredAnnouncement.description}</td>
+                  <td>{formatDate(filteredAnnouncement.date)}</td>
+                  <td>
+                    <Image
+                      src={filteredAnnouncement.image}
+                      alt="Announcement"
+                      style={{ maxWidth: "100px", maxHeight: "100px" }}
+                      thumbnail
+                    />
+                  </td>
+                  <td>{filteredAnnouncement?.payments?.amount || "N/A"}</td>
+                  <td>
+                    <Space size={[8, 8]} wrap>
+                      {filteredAnnouncement?.payments?.image ? (
+                        <Image
+                          src={filteredAnnouncement?.payments?.image}
+                          alt="Payment"
+                          style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+                        />
+                      ) : (
+                        <span>N/A</span>
+                      )}
+                    </Space>
+                  </td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      style={{ width: "83px", marginLeft: "5px" }}
+                      onClick={() => handleShowModal(filteredAnnouncement)}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      variant="success"
+                      style={{ marginLeft: "5px", marginTop: "5px" }}
+                      onClick={() => handleActivate(filteredAnnouncement._id)}
+                    >
+                      Activate
+                    </Button>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
       <Modal show={showModal} onHide={handleCloseModal}>

@@ -50,7 +50,7 @@ const AddMember = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Member</h1>
+      <h4>Add Member</h4>
       <form onSubmit={handleManualSubmit}>
         <div className="mb-3">
           <label htmlFor="name">Name</label>

@@ -58,7 +58,7 @@ const AddMagazines = () => {
 
   return (
     <div className="container mt-5">
-      <h1>  Add Magazines</h1>
+      <h4>  Add Magazines</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title</label>

@@ -76,7 +76,7 @@ const AddContactInfo = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Contact Info</h1>
+      <h4>Add Contact Info</h4>
       <form onSubmit={handleSubmit}>
         {[
           { label: "Committee Name", name: "CommitteeName", type: "text" },

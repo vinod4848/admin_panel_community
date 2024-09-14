@@ -111,7 +111,7 @@ const AddBlog = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{blogId ? "Edit Blog" : "Add Blog"}</h1>
+      <h4>{blogId ? "Edit Blog" : "Add Blog"}</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title</label>

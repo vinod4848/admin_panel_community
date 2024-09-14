@@ -71,7 +71,7 @@ const AddAnnouncements = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Announcement</h1>
+      <h4>Add Announcement</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Category</label>

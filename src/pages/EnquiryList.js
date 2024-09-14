@@ -48,7 +48,7 @@ const EnquiryList = () => {
 
   return (
     <div className="enquiry-list-container">
-      <h1>Enquiry List</h1>
+      <h4>Enquiry List</h4>
       {loading ? (
         <p>Loading...</p>
       ) : contactUsList.length === 0 ? (

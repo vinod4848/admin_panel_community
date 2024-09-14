@@ -90,7 +90,7 @@ const AddAdvertisement = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{id ? "Update" : "Add"} Advertisement</h1>
+      <h4>{id ? "Update" : "Add"} Advertisement</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Client Name:</label>

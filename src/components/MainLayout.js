@@ -1,9 +1,15 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { AiOutlineDashboard } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
-// import { IoMdNotifications } from "react-icons/io";
-import { ImBlog } from "react-icons/im";
-import { FaBlogger, FaEnvelope, FaEnvelopeOpen, FaUsers } from "react-icons/fa";
+import { RiUser3Line } from "react-icons/ri";
+import { FaUserTie, FaMicroblog, FaCarAlt } from "react-icons/fa";
+import { MdDashboard, MdCardMembership, MdPayments, MdNewspaper, MdContactless } from "react-icons/md";
+import { FcDepartment, FcAdvertising, FcGallery, FcNews, FcAbout } from "react-icons/fc";
+import { SiEventstore } from "react-icons/si";
+import { AiFillProfile, AiFillPropertySafety } from "react-icons/ai";
+import { GiLovers } from "react-icons/gi";
+import { TiShoppingCart } from "react-icons/ti";
+import { VscReport } from "react-icons/vsc";
+import { TbReportSearch } from "react-icons/tb";
 import { Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -55,34 +61,34 @@ const MainLayout = () => {
           items={[
             {
               key: "",
-              icon: <AiOutlineDashboard className="fs-4" />,
+              icon: <MdDashboard  className="fs-6"  color="Orange" />,
               label: "Dashbord",
             },
             {
               key: "Committee",
-              icon: <FaUsers className="fs-4" />,
+              icon: <MdCardMembership   className="fs-6" color="Teal"  />,
               label: "Committee",
               children: [
                 {
                   key: "Committee",
-                  icon: <FaUsers className="fs-4" />,
+                  // icon: <FaUsers className="fs-4" />,
                   label: "Add Committee",
                 },
                 {
                   key: "Committee-List",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Committee List",
                 },
               ],
             },
             {
               key: "DepartmentCategory",
-              icon: <FaUsers className="fs-4" />,
+              icon: <FcDepartment className="fs-6" />,
               label: "DepartmentCategory",
               children: [
                 {
                   key: "DepartmentCategory-List",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "DepartmentCategory List",
                 },
               ],
@@ -119,41 +125,41 @@ const MainLayout = () => {
 
             {
               key: "member",
-              icon: <FaUsers className="fs-4" />,
+              icon: <RiUser3Line className="fs-6"  color="Orange" />,
               label: "Members",
               children: [
                 {
                   key: "member",
-                  icon: <FaUsers className="fs-4" />,
+                  // icon: <RiUser3Line className="fs-4" />,
                   label: "Add Member",
                 },
                 {
                   key: "Member-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Member List",
                 },
               ],
             },
             {
               key: "user",
-              icon: <FaBlogger className="fs-4" />,
-              label: "UserProfiles",
+              icon: <FaUserTie className="fs-6"  color="Green"/>,
+              label: "User Profiles",
               children: [
                 {
                   key: "user-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Profiles List",
                 },
               ],
             },
             {
               key: "Payments",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <MdPayments className="fs-6" color="#FF9933"  />,
               label: "Payments",
               children: [
                 {
                   key: "payments-listofline",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Payments List",
                 },
               ],
@@ -191,85 +197,85 @@ const MainLayout = () => {
 
             {
               key: "blog",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FaMicroblog className="fs-6"  color="blue"/>,
               label: "Blogs",
               children: [
                 {
                   key: "blogs",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add Blog",
                 },
                 {
                   key: "blog-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Blog List",
                 },
               ],
             },
             {
               key: "event",
-              icon: <FaEnvelope className="fs-4" />,
+              icon: <SiEventstore className="fs-6"  color="Lavender" />,
               label: "Event",
               children: [
                 {
                   key: "events",
-                  icon: <FaEnvelopeOpen className="fs-4" />,
+                  // icon: <FaEnvelopeOpen className="fs-4" />,
                   label: "Add Event",
                 },
                 {
                   key: "event-list",
-                  icon: <FaEnvelopeOpen className="fs-4" />,
+                  // icon: <FaEnvelopeOpen className="fs-4" />,
                   label: "Event List",
                 },
                 {
                   key: "approval-list-event",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Approval Pending",
                 },
                 {
                   key: "complete-event-list",
-                  icon: <FaEnvelopeOpen className="fs-4" />,
+                  // icon: <FaEnvelopeOpen className="fs-4" />,
                   label: "Complete List",
                 },
               ],
             },
             {
               key: "News",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <MdNewspaper className="fs-6" color="Navy" />,
               label: "News",
               children: [
                 {
                   key: "news",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add News",
                 },
                 {
                   key: "news-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "News List",
                 },
               ],
             },
             {
               key: "advertising ",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FcAdvertising className="fs-6"  color="Turquoise"/>,
               label: "Advertising ",
               children: [
                 {
                   key: "advertising",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add Advertising ",
                 },
                 {
                   key: "advertising-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Advertising  List",
                 },
               ],
             },
             {
               key: "Job",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FcAdvertising className="fs-6"  color="Lavender"/>,
               label: "Job",
               children: [
                 // {
@@ -279,19 +285,19 @@ const MainLayout = () => {
                 // },
                 {
                   key: "job-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Job  List",
                 },
                 {
                   key: "approval-job-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Approval Pending",
                 },
               ],
             },
             {
               key: "directory",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <AiFillProfile className="fs-6"  color="Violet"/>,
               label: "Directory",
               children: [
                 // {
@@ -301,7 +307,7 @@ const MainLayout = () => {
                 // },
                 {
                   key: "directory-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Directory  List",
                 },
               ],
@@ -309,17 +315,17 @@ const MainLayout = () => {
 
             {
               key: "gallery",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FcGallery className="fs-6"   color="Coral"/>,
               label: "Gallery",
               children: [
                 {
                   key: "gallery",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add Gallery ",
                 },
                 {
                   key: "gallery-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Gallery  List",
                 },
               ],
@@ -327,80 +333,80 @@ const MainLayout = () => {
 
             {
               key: "Matrimonial",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <GiLovers className="fs-6"   color="Brown"/>,
               label: "Matrimonial",
               children: [
                 {
                   key: "matrimonial-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Matrimonial  List",
                 },
                 {
                   key: "approval-list-matrimonial",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Approval Pending",
                 },
               ],
             },
             {
               key: "magazines",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FcNews className="fs-6"   color="Maroon"/>,
               label: "Magazines",
               children: [
                 {
                   key: "magazines",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add Magazines ",
                 },
                 {
                   key: "magazines-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Magazines  List",
                 },
               ],
             },
             {
               key: "announcements",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FcAdvertising className="fs-6"  color="Turquoise" />,
               label: "Announcements",
               children: [
                 {
                   key: "announcementCategoryName",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: " Add CategoryAnnouncement",
                 },
                 {
                   key: "announcementCategoryName-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Category Announcement List",
                 },
 
                 {
                   key: "announcements",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Add Announcements ",
                 },
                 {
                   key: "approvalpending-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "ApprovalPending List",
                 },
                 {
                   key: "announcements-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "List Announcements ",
                 },
 
                 {
                   key: "completed-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Completed  List",
                 },
               ],
             },
             {
               key: "Property",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <AiFillPropertySafety  className="fs-6" color="Beige" />,
               label: "Property",
               children: [
                 // {
@@ -410,7 +416,7 @@ const MainLayout = () => {
                 // },
                 {
                   key: "property-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Property  List",
                 },
 
@@ -421,7 +427,7 @@ const MainLayout = () => {
                 // },
                 {
                   key: "landPlot-list",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Lands & Plots List ",
                 },
                 // {
@@ -431,7 +437,7 @@ const MainLayout = () => {
                 // },
                 {
                   key: "shopOffice-list",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "Shop & Office  List",
                 },
 
@@ -442,14 +448,14 @@ const MainLayout = () => {
                 // },
                 {
                   key: "pgGuestHouse-list",
-                  icon: <FaBlogger className="fs-4" />,
+                  // icon: <FaBlogger className="fs-4" />,
                   label: "PG & GuestHouse List",
                 },
               ],
             },
             {
               key: "product ",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <TiShoppingCart className="fs-6"  color="Lime"/>,
               label: "Products",
               children: [
                 // {
@@ -464,90 +470,90 @@ const MainLayout = () => {
                 // },
                 {
                   key: "fashion-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Fashion  List",
                 },
                 {
                   key: "furniture-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Furniture  List",
                 },
                 {
                   key: "electronicsList-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "ElectronicsList  List",
                 },
                 {
                   key: "phone-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Phone List",
                 },
                 {
                   key: "accessories-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Accessories  List",
                 },
                 {
                   key: "tablets-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Tablets  List",
                 },
                 {
                   key: "other-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Other List",
                 },
               ],
             },
             {
               key: "vehicle",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <FaCarAlt className="fs-6"   color="Navy"/>,
               label: "Vehicle",
               children: [
                 {
                   key: "car-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Car  List",
                 },
                 {
                   key: "bike-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Bike  List",
                 },
                 {
                   key: "bicycles-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Bicycles  List",
                 },
               ],
             },
             {
               key: "reports",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <TbReportSearch className="fs-6"  color="Magenta"/>,
               label: "Reports",
               children: [
                 {
                   key: "reports-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Reports  List",
                 },
               ],
             },
             {
               key: "enquiry",
-              icon: <FaBlogger className="fs-4" />,
+              icon: <VscReport className="fs-6"   color="Beige"/>,
               label: "Enquirys",
               children: [
                 {
                   key: "enquiry-list",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "Enquiry  List",
                 },
               ],
             },
             {
               key: "ContcatInfo",
-              icon: <FaUsers className="fs-4" />,
+              icon: <MdContactless className="fs-6"  color="Cyan" />,
               label: "ContcatInfo",
               children: [
                 // {
@@ -557,14 +563,14 @@ const MainLayout = () => {
                 // },
                 {
                   key: "ContcatInfo-List",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "ContcatInfo List",
                 },
               ],
             },
             {
               key: "AboutUs",
-              icon: <FaUsers className="fs-4" />,
+              icon: <FcAbout className="fs-6" color="Lime"  />,
               label: "AboutUs",
               children: [
                 // {
@@ -574,7 +580,7 @@ const MainLayout = () => {
                 // },
                 {
                   key: "AboutUs-List",
-                  icon: <ImBlog className="fs-4" />,
+                  // icon: <ImBlog className="fs-4" />,
                   label: "AboutUs List",
                 },
               ],

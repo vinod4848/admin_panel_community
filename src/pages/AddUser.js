@@ -65,7 +65,7 @@ const AddUser = () => {
 
   return (
     <div className="container mt-5">
-      <h1>{userId ? "Update User" : "Add User"}</h1>
+      <h4>{userId ? "Update User" : "Add User"}</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Username</label>

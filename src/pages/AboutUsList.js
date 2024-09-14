@@ -46,7 +46,7 @@ const AboutUsList = () => {
 
   return (
     <div className="container">
-      <h1>About Us</h1>
+      <h4>About Us</h4>
       <div className="d-flex justify-content-end">
         <button className="btn btn-primary mb-3" onClick={handleAddAboutUs}>
           Add About Us

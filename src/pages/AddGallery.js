@@ -55,7 +55,7 @@ const AddGallery = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add Gallery</h1>
+      <h4>Add Gallery</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Album title</label>

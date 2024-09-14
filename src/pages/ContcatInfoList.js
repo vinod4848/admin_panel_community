@@ -47,7 +47,7 @@ const ContactInfoList = () => {
 
   return (
     <div className="container">
-      <h1>Contact Info List</h1>
+      <h4>Contact Info List</h4>
        <div className="d-flex justify-content-end">
     <button className="btn btn-primary mb-3" onClick={handleAddContactInfo}>
       Add Contact Info

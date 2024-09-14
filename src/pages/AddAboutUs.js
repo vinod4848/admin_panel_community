@@ -52,7 +52,7 @@ const AddAboutUs = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add About Us Info</h1>
+      <h4>Add About Us Info</h4>
       <form onSubmit={handleSubmit}>
         {[
           { label: "Title", name: "title", type: "text" },

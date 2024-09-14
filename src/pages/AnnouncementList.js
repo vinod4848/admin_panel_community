@@ -11,8 +11,18 @@ const AnnouncementList = () => {
   useEffect(() => {
     axios
       .get(`${base_url}/announcements`)
-      .then((response) => setAnnouncements(response.data))
-      .catch((error) => console.error("Error fetching data:", error));
+      .then((response) => {
+        if (Array.isArray(response?.data?.data)) {
+          setAnnouncements(response?.data?.data);
+        } else {
+          console.error("Unexpected data format:", response.data);
+          setAnnouncements([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setAnnouncements([]);
+      });
   }, []);
 
   const handleDelete = (announcementId) => {
@@ -47,7 +57,7 @@ const AnnouncementList = () => {
     const announcementDate = new Date(dateString);
     return announcementDate > currentDate;
   };
-  
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
@@ -71,7 +81,7 @@ const AnnouncementList = () => {
           </tr>
         </thead>
         <tbody>
-          {announcements
+          {(Array.isArray(announcements) ? announcements : [])
             .filter(
               (announcement) =>
                 announcement.isActive && isFutureDate(announcement.date)
@@ -80,11 +90,15 @@ const AnnouncementList = () => {
               <tr key={filteredAnnouncement._id}>
                 <td>{filteredAnnouncement.approvedby?.username}</td>
                 <td>
-                  {filteredAnnouncement.createdBy?.username || "Not Available"}
+                  {filteredAnnouncement.createdBy
+                    ? filteredAnnouncement.createdBy.username
+                    : filteredAnnouncement.profileId
+                    ? filteredAnnouncement.profileId.firstName
+                    : "Not Available"}
                 </td>
+
                 <td>{filteredAnnouncement.announcementType}</td>
                 <td>{filteredAnnouncement.description}</td>
-                
                 <td>{formatDate(filteredAnnouncement.date)}</td>
                 <td>
                   <img
@@ -93,14 +107,18 @@ const AnnouncementList = () => {
                     style={{ maxWidth: "100px", maxHeight: "100px" }}
                   />
                 </td>
-                <td>{filteredAnnouncement.payments[0]?.amount || "N/A"}</td>
+                <td>{filteredAnnouncement.payments?.amount || "N/A"}</td>
                 <td>
                   <Space size={[8, 8]} wrap>
-                    {filteredAnnouncement.payments[0]?.image ? (
+                    {filteredAnnouncement.payments?.image ? (
                       <Image
-                        src={filteredAnnouncement.payments[0]?.image}
+                        src={filteredAnnouncement.payments?.image}
                         alt="Payment"
-                        style={{ width: "70px", height: "70px", marginBottom: "8px" }}
+                        style={{
+                          width: "70px",
+                          height: "70px",
+                          marginBottom: "8px",
+                        }}
                       />
                     ) : (
                       <span>N/A</span>
@@ -109,7 +127,7 @@ const AnnouncementList = () => {
                 </td>
                 <td>
                   <Button
-                    type="Danger"
+                    type="danger"
                     onClick={() => handleShowModal(filteredAnnouncement)}
                   >
                     Delete
@@ -133,7 +151,7 @@ const AnnouncementList = () => {
             onClick={() => handleDelete(selectedAnnouncement?._id)}
           >
             Delete
-          </Button>
+          </Button>,
         ]}
       >
         <p>

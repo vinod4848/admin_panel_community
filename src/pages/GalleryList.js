@@ -97,7 +97,7 @@ const GalleryList = () => {
 
   return (
     <div>
-      <h1>Gallery</h1>
+      <h4>Gallery</h4>
       <Table dataSource={galleryItems} columns={columns} />
     </div>
   );

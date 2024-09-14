@@ -56,7 +56,7 @@ const AddNews = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Add News</h1>
+      <h4>Add News</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title:</label>

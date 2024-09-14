@@ -52,7 +52,7 @@ const AddJob = () => {
   <ToastContainer position="top-center" autoClose={3000} hideProgressBar />;
   return (
     <div className="container mt-5">
-      <h1>Add Job</h1>
+      <h4>Add Job</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title:</label>
