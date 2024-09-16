@@ -397,11 +397,11 @@ const MainLayout = () => {
                   label: "List Announcements ",
                 },
 
-                {
-                  key: "completed-list",
-                  // icon: <ImBlog className="fs-4" />,
-                  label: "Completed  List",
-                },
+                // {
+                //   key: "completed-list",
+                //   // icon: <ImBlog className="fs-4" />,
+                //   label: "Completed  List",
+                // },
               ],
             },
             {

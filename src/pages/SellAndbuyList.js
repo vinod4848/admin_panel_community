@@ -282,6 +282,7 @@ const SellAndbuyList = () => {
             : columns
         }
         dataSource={data}
+        className="custom-table"
       />
       <Modal
         title="Confirm Delete"

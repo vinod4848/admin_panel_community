@@ -97,7 +97,7 @@ const PaymentListofline = () => {
   return (
     <div className="container mt-5">
       <h1 className="mb-4">Payments</h1>
-      <Table striped bordered hover>
+      <Table className="custom-table">
         <thead>
           <tr>
             <th>Payment for</th>
@@ -115,7 +115,6 @@ const PaymentListofline = () => {
                 <img
                   src={payment.image}
                   alt="Payment"
-                  className="img-thumbnail"
                   width="50"
                   height="50"
                 />

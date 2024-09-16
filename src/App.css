@@ -120,3 +120,10 @@ button:hover {
   background-color: var(--color-secondary);
   transition: background-color 0.3s;
 }
+.custom-table .ant-table-thead  tr  th {
+  background-color: #177a6b;
+  color: white;
+}
+.css-dev-only-do-not-override-1xusghl .ant-table-wrapper .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+  content: none !important;
+}

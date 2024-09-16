@@ -73,3 +73,9 @@
 .payment-table tbody tr:hover {
   background-color: #eaeaea;
 }
+
+.custom-table thead th {
+  background-color: #177a6b;
+  color: white;
+  /* content: none !important; */
+}

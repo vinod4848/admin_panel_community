@@ -130,7 +130,7 @@ const MemberProfilelist = () => {
           dataSource={members}
           columns={columns}
           rowKey="_id"
-          className="table"
+          className="custom-table"
         />
       </div>
 

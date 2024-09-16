@@ -91,7 +91,7 @@ const Newslist = () => {
     <div>
       <h3 className="mb-4 title">News</h3>
       <div>
-        <Table columns={columns} dataSource={transformnewsData()} />
+        <Table columns={columns} dataSource={transformnewsData()} className="custom-table" />
       </div>
       <CustomModel
         hideModal={hideModal}

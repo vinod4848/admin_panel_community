@@ -96,6 +96,7 @@ const JobListApprovalPending = () => {
           columns={columns}
           dataSource={transformJobData()}
           scroll={{ x: true }}
+          className="custom-table"
         />
       </div>
       <CustomModel

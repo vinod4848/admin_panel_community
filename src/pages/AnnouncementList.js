@@ -66,7 +66,7 @@ const AnnouncementList = () => {
   return (
     <div>
       <h2 style={{ color: "green" }}>Announcements List</h2>
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
+      <table style={{ borderCollapse: "collapse", width: "100%" }} className="custom-table">
         <thead>
           <tr>
             <th>Approved By</th>

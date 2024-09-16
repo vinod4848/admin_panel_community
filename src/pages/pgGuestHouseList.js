@@ -106,11 +106,11 @@ const PgGuestHouseList = () => {
       render: (_, record, index) => index + 1,
     },
     {
-      title: "Approved By",
+      title: "Approved",
       dataIndex: "approvedby",
     },
     {
-      title: "Post By",
+      title: "Post",
       dataIndex: "firstName",
     },
     // {
@@ -118,7 +118,7 @@ const PgGuestHouseList = () => {
     //   dataIndex: "subtype",
     // },
     {
-      title: "Ad Title",
+      title: "Title",
       dataIndex: "adTitle",
     },
     // {
@@ -174,12 +174,12 @@ const PgGuestHouseList = () => {
       ),
     },
     {
-      title: "Activation Amount",
+      title: "Amount",
       dataIndex: "amount",
     },
 
     {
-      title: "Payment Image",
+      title: "Image",
       dataIndex: "image",
       render: (image) => (
         <Space size={[8, 8]} wrap>
@@ -287,7 +287,7 @@ const PgGuestHouseList = () => {
         <Option value="true">Show Active</Option>
         <Option value="false">Show Inactive</Option>
       </Select>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} className="custom-table" />
       <Modal
         title="Confirm Delete"
         visible={deleteModalVisible}

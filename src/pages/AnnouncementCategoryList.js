@@ -50,7 +50,7 @@ const AnnouncementCategoryList = () => {
   return (
     <div>
       <h2 style={{ color: "green" }}>Announcements Category List </h2>
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
+      <table style={{ borderCollapse: "collapse", width: "100%" }} className="custom-table">
         <thead>
           <tr>
             <th>Category</th>

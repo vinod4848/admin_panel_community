@@ -107,7 +107,7 @@ const Bloglist = () => {
     <div>
       <h3 className="mb-4 title">Blogs</h3>
       <div>
-        <Table columns={columns} dataSource={transformBlogData()} />
+        <Table columns={columns} dataSource={transformBlogData()} className="custom-table" />
       </div>
       <CustomModel
         hideModal={hideModal}

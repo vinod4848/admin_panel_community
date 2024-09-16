@@ -162,7 +162,7 @@ const MemberList = () => {
           dataSource={filteredMembers}
           columns={columns}
           rowKey="_id"
-          className="table"
+         className="custom-table"
         />
       </div>
     </div>

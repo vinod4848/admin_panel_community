@@ -144,7 +144,7 @@ const EventListApprovalPending = () => {
     <div>
       <h3 className="mb-4 title">EventList Approval Pending</h3>
       <div>
-        <Table columns={columns} dataSource={transformEventData()} />
+        <Table columns={columns} dataSource={transformEventData()} className="custom-table" />
       </div>
       <CustomModel
         hideModal={hideModal}

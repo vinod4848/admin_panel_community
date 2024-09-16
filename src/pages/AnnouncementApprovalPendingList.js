@@ -86,8 +86,8 @@ const AnnouncementApprovalPendingList = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Announcements Approval Pending List</h2>
-      <Table striped bordered hover>
+      <h4>Announcements Approval Pending List</h4>
+      <Table  className="custom-table">
         <thead>
           <tr>
             <th>CreatedBy</th>

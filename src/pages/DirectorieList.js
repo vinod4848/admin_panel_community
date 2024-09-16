@@ -145,7 +145,7 @@ const Directorielist = () => {
         />
       </div>
       <div>
-        <Table columns={columns} dataSource={transformDirectorieData()} />
+        <Table columns={columns} dataSource={transformDirectorieData()} className="custom-table" />
       </div>
       <CustomModel
         hideModal={hideModal}

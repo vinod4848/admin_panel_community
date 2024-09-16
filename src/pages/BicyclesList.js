@@ -252,7 +252,7 @@ const BicyclesList = () => {
         <Option value="true">Show Active</Option>
         <Option value="false">Show Inactive</Option>
       </Select>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} className="custom-table"/>
       <Modal
         title="Confirm Delete"
         visible={deleteModalVisible}

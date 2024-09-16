@@ -53,7 +53,7 @@ const GalleryList = () => {
   };
 
   const columns = [
-    { title: "Album Title", dataIndex: "Albumtitle" },
+    { title: "Album", dataIndex: "Albumtitle" },
     {
       title: "Images",
       dataIndex: "image",
@@ -98,7 +98,7 @@ const GalleryList = () => {
   return (
     <div>
       <h4>Gallery</h4>
-      <Table dataSource={galleryItems} columns={columns} />
+      <Table dataSource={galleryItems} columns={columns}  className="custom-table"/>
     </div>
   );
 };

@@ -120,7 +120,7 @@ const Eventlist = () => {
         Upcoming Event
       </h3>
       <div>
-        <Table columns={columns} dataSource={transformEventData()} />
+        <Table columns={columns} dataSource={transformEventData()}  className="custom-table"/>
       </div>
       <CustomModel
         hideModal={hideModal}

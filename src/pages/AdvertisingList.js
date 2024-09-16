@@ -106,7 +106,7 @@ const Advertisinglist = () => {
     <div>
       <h3 className="mb-4 title">Advertisements</h3>
       <div>
-        <Table columns={columns} dataSource={transformadvertisingData()} />
+        <Table columns={columns} dataSource={transformadvertisingData()}  className="custom-table"/>
       </div>
       
       <CustomModel
