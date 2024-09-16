@@ -1,78 +1,122 @@
 :root {
-    --color-212529: #212529;
-    --color-399889: #399889;
-    --color-47ad24: #47ad24;
-    --color-e52e2e: #e52e2e;
-    --color-288599: #288599;
-    --color-3d464d: #3d464d;
-    --color-c3d4da: #c3d4da;
+  --color-primary: #399889; 
+  --color-secondary: #288599;  
+  --color-success: #47ad24;  
+  --color-danger: #e52e2e;  
+  
+ 
+  --color-dark: #212529;  
+  --color-gray-dark: #3d464d; 
+  --color-light-gray: #c3d4da;  
+  --color-background-light: #f8f9fa;  
+  --color-muted: #6c757d; 
+  
+
+  --color-warning: #ffb347;  /* Warning messages (orange) */
+  --color-info: #17a2b8;  /* Information messages (light blue) */
+  
+
+  --color-sidebar: #177a6b;  
+  --color-sidebar-hover: #6ac9bb;  
+  
+  --button-border-radius: 6px; 
 }
+
 .green {
-    color: var(--color-47ad24);
-    font: 14px;
-    font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-success);
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .red {
-    color: var(--color-212529);
-    font: 14px;
-    font-family: Arial, Helvetica, sans-serif !important;
-}
-
-.quill {
-    background-color: white;
-}
-
-.form-control {
-    box-shadow: none;
-    border-color: var(--color-c3d4da);
+  color: var(--color-danger);
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .title {
-    font: 28px;
-    font-family: Arial, Helvetica, sans-serif !important;
-    color: var(--color-212529);
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-dark);
 }
 
 .sub-title {
-    font: 24px;
-    font-family: Arial, Helvetica, sans-serif !important;
-    color: var(--color-212529);
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-muted);
 }
 
 .desc {
-    font: 14px;
-    font-family: Arial, Helvetica, sans-serif !important;
-    color: var(--color-288599);
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-secondary);
 }
 
 
+.form-control {
+  box-shadow: none;
+  border-color: var(--color-light-gray);
+  background-color: white;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px rgba(57, 152, 137, 0.2);
+}
+
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid var(--color-light-gray);
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-muted);
+  color: white;
+}
+
+img {
+  border-radius: 5px;
+}
+
+.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-dark.css-dev-only-do-not-override-1xusghl,
+.ant-layout-sider-childrenul,
+.ant-layout-sider.ant-layout-sider-dark,
+.ant-layout-sider .ant-layout-sider-dark {
+  background-color: var(--color-sidebar) !important;
+}
+
+:where(.css-dev-only-do-not-override-1xusghl).ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline,
+:where(.css-dev-only-do-not-override-1xusghl).ant-menu-dark > .ant-menu.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background-color: var(--color-sidebar-hover) !important;
+}
+
 .App {
-    text-align: center;
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    padding: 20px;
-    color: white;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  img {
-    border-radius: 5px;
-  }
+  text-align: center;
+}
+
+.App-header {
+  background-color: var(--color-dark);
+  padding: 20px;
+  color: white;
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--button-border-radius);
+  padding: 10px 15px;
+}
+
+button:hover {
+  background-color: var(--color-secondary);
+  transition: background-color 0.3s;
+}

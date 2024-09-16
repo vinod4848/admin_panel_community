@@ -66,7 +66,7 @@ const MainLayout = () => {
             },
             {
               key: "Committee",
-              icon: <MdCardMembership   className="fs-6" color="Teal"  />,
+              icon: <MdCardMembership   className="fs-6" color="white"  />,
               label: "Committee",
               children: [
                 {

@@ -13,12 +13,12 @@
   .enquiry-table th,
   .enquiry-table td {
     padding: 12px;
-    border: 1px solid #ddd; 
+    border: 1px solid #a9a4a4; 
     text-align: left;
   }
   
   .enquiry-table th {
-    background-color: #f4f4f4;
+    background-color: #177a6b;
   }
   
   .action-cell {
