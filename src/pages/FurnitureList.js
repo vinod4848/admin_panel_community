@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
+import { Config } from "../utils/axiosconfig";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
@@ -69,23 +70,50 @@ const FurnitureList = () => {
     setSearchQuery(e.target.value);
   };
   
-  const handleToggleActive = async (record) => {
+  // const handleToggleActive = async (record) => {
+  //   try {
+  //     const response = await axios.put(
+  //       `${base_url}/approveFurniture/${record._id}`,
+  //       {
+  //         isActive: !record.isActive,
+  //         approvedby: getUserData?._id || "",
+  //       }
+  //     );
+  //     if (response.status === 200) {
+  //       message.success(
+  //         `Furniture ${record.isActive ? "deactivated" : "activated"} successfully`
+  //       );
+  //       const updatedFurniture = furniture.map((item) =>
+  //         item._id === record._id ? { ...item, isActive: !record.isActive } : item
+  //       );
+  //       setFurniture(updatedFurniture);
+  //     } else {
+  //       message.error("Failed to toggle furniture activation status");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error toggling furniture activation status:", error);
+  //     message.error("Failed to toggle furniture activation status");
+  //   }
+  // };
+
+  const handleToggleActive = async (furnitureId, isActive) => {
     try {
       const response = await axios.put(
-        `${base_url}/furniture/${record._id}`,
+        `${base_url}/approveFurniture/${furnitureId._id}`,
         {
-          isActive: !record.isActive,
-          approvedby: getUserData?._id || "",
-        }
+          isActive: !isActive, 
+          approvedby: getUserData?._id || "", 
+        },
+        Config
       );
       if (response.status === 200) {
         message.success(
-          `Furniture ${record.isActive ? "deactivated" : "activated"} successfully`
+          `Fashion ${isActive ? "deactivated" : "activated"} successfully`
         );
-        const updatedFurniture = furniture.map((item) =>
-          item._id === record._id ? { ...item, isActive: !record.isActive } : item
+        const updatefurniture = furniture.map((item) =>
+          item._id === furnitureId ? { ...item, isActive: !isActive } : item
         );
-        setFurniture(updatedFurniture);
+        setFurniture(updatefurniture);
       } else {
         message.error("Failed to toggle furniture activation status");
       }
@@ -106,11 +134,11 @@ const FurnitureList = () => {
       dataIndex: "approvedby",
     },
     {
-      title: "Post By",
+      title: "Post",
       dataIndex: "firstName",
     },
     {
-      title: "Ad Title",
+      title: "Title",
       dataIndex: "adTitle",
     },
     // {
@@ -158,12 +186,12 @@ const FurnitureList = () => {
       ),
     },
     {
-      title: "Activation Amount",
+      title: "Amount",
       dataIndex: "amount",
     },
 
     {
-      title: "Payment Image",
+      title: "Image",
       dataIndex: "image",
       render: (image) => (
         <Space size={[8, 8]} wrap>
@@ -246,7 +274,7 @@ const FurnitureList = () => {
         <input
           type="text"
           className="form-control"
-          placeholder="Search by Ad Title, Price, or FashionType"
+          placeholder="Search by Ad Title, Price, or furniture"
           value={searchQuery}
           onChange={handleSearch}
         />

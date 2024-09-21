@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image  } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -52,9 +53,9 @@ const PgGuestHouseList = () => {
     }
   };
 
-  const showDeleteModal = (landPlotId) => {
+  const showDeleteModal = (pgGuestHouseId) => {
     setDeleteModalVisible(true);
-    setPgGuestHousesToDelete(landPlotId);
+    setPgGuestHousesToDelete(pgGuestHouseId);
   };
 
   const hideDeleteModal = () => {
@@ -69,33 +70,58 @@ const PgGuestHouseList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  // const handleToggleActive = async (record) => {
+  //   try {
+  //     const response = await axios.put(
+  //       `${base_url}/pgGuestHouses/${record._id}`,
+  //       {
+  //         isActive: !record.isActive,
+  //         approvedby: getUserData?._id || "",
+  //       }
+  //     );
+  //     if (response.status === 200) {
+  //       message.success(
+  //         `PG Guest House ${
+  //           record.isActive ? "deactivated" : "activated"
+  //         } successfully`
+  //       );
+  //       const updatedPgGuestHouses = pgGuestHouses.map((pgGuestHouse) =>
+  //         pgGuestHouse._id === record._id
+  //           ? { ...pgGuestHouse, isActive: !record.isActive }
+  //           : pgGuestHouse
+  //       );
+  //       setPgGuestHouses(updatedPgGuestHouses);
+  //     } else {
+  //       message.error("Failed to toggle PG Guest House activation status");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error toggling PG Guest House activation status:", error);
+  //     message.error("Failed to toggle PG Guest House activation status");
+  //   }
+  // };
+
+  const handleToggleActive = async (pgGuestHouseId, isActive) => {
     try {
       const response = await axios.put(
-        `${base_url}/pgGuestHouses/${record._id}`,
+        `${base_url}/approvePgGuestHouse/${pgGuestHouseId._id}`,
         {
-          isActive: !record.isActive,
+          isActive: !isActive,
           approvedby: getUserData?._id || "",
-        }
+        },
+        Config
       );
       if (response.status === 200) {
-        message.success(
-          `PG Guest House ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+        message.success(`PgGuestHouses ${isActive ? "deactivated" : "activated"} successfully`);
+        const updatepgGuestHouses = pgGuestHouses.map((item) =>
+          item._id === pgGuestHouseId ? { ...item, isActive: !isActive } : item
         );
-        const updatedPgGuestHouses = pgGuestHouses.map((pgGuestHouse) =>
-          pgGuestHouse._id === record._id
-            ? { ...pgGuestHouse, isActive: !record.isActive }
-            : pgGuestHouse
-        );
-        setPgGuestHouses(updatedPgGuestHouses);
+        setPgGuestHouses(updatepgGuestHouses);
       } else {
-        message.error("Failed to toggle PG Guest House activation status");
+        message.error("Failed to toggle pgGuestHouses activation status");
       }
     } catch (error) {
-      console.error("Error toggling PG Guest House activation status:", error);
-      message.error("Failed to toggle PG Guest House activation status");
+      console.error("Error toggling pgGuestHouses activation status:", error);
+      message.error("Failed to toggle pgGuestHouses activation status");
     }
   };
 

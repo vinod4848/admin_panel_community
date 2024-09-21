@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
+import { Config } from "../utils/axiosconfig";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
@@ -9,7 +10,7 @@ import { RiSearchLine } from "react-icons/ri";
 const { Option } = Select;
 
 const ElectronicsList = () => {
-  const [electronics, setFurniture] = useState([]);
+  const [electronics, setElectronics] = useState([]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [furnitureToDelete, setFurnitureToDelete] = useState(null);
   const [filterValue, setFilterValue] = useState("all");
@@ -20,7 +21,7 @@ const ElectronicsList = () => {
     const fetchFurniture = async () => {
       try {
         const response = await axios.get(`${base_url}/electronics`);
-        setFurniture(response.data);
+        setElectronics(response.data);
       } catch (error) {
         console.error("Error fetching electronics:", error);
       }
@@ -39,7 +40,7 @@ const ElectronicsList = () => {
         const updatedFurniture = electronics.filter(
           (item) => item._id !== furnitureToDelete._id
         );
-        setFurniture(updatedFurniture);
+        setElectronics(updatedFurniture);
         setDeleteModalVisible(false);
         setFurnitureToDelete(null);
       } else {
@@ -68,27 +69,54 @@ const ElectronicsList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  // const handleToggleActive = async (record) => {
+  //   try {
+  //     const response = await axios.put(
+  //       `${base_url}/electronics/${record._id}`,
+  //       {
+  //         isActive: !record.isActive,
+  //         approvedby: getUserData?._id || "",
+  //       }
+  //     );
+  //     if (response.status === 200) {
+  //       message.success(
+  //         `Electronic ${
+  //           record.isActive ? "deactivated" : "activated"
+  //         } successfully`
+  //       );
+  //       const updatedFurniture = electronics.map((item) =>
+  //         item._id === record._id
+  //           ? { ...item, isActive: !record.isActive }
+  //           : item
+  //       );
+  //       setElectronics(updatedFurniture);
+  //     } else {
+  //       message.error("Failed to toggle electronics activation status");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error toggling electronics activation status:", error);
+  //     message.error("Failed to toggle electronics activation status");
+  //   }
+  // };
+  
+  const handleToggleActive = async (electronicsId, isActive) => {
     try {
       const response = await axios.put(
-        `${base_url}/electronics/${record._id}`,
+        `${base_url}/approveElectronics/${electronicsId._id}`,
         {
-          isActive: !record.isActive,
-          approvedby: getUserData?._id || "",
-        }
+          isActive: !isActive, 
+          approvedby: getUserData?._id || "", 
+        },
+        Config
       );
       if (response.status === 200) {
         message.success(
-          `Electronic ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+          `Electronics ${isActive ? "deactivated" : "activated"} successfully`
         );
-        const updatedFurniture = electronics.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
+        const updateElectronics = electronics.map((item) =>
+          item._id === electronicsId ? { ...item, isActive: !isActive } : item
         );
-        setFurniture(updatedFurniture);
+        setElectronics(updateElectronics);
       } else {
         message.error("Failed to toggle electronics activation status");
       }
@@ -97,7 +125,6 @@ const ElectronicsList = () => {
       message.error("Failed to toggle electronics activation status");
     }
   };
-
   const columns = [
     {
       title: "SN",

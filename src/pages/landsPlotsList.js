@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select , Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { useSelector } from "react-redux";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
@@ -70,30 +71,56 @@ const LandsPlotsList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  // const handleToggleActive = async (record) => {
+  //   try {
+  //     const response = await axios.put(`${base_url}/landPlots/${record._id}`, {
+  //       isActive: !record.isActive,
+  //       approvedby: getUserData?._id || "",
+  //     });
+  //     if (response.status === 200) {
+  //       message.success(
+  //         `Land & Plots ${
+  //           record.isActive ? "deactivated" : "activated"
+  //         } successfully`
+  //       );
+  //       const updatedLandPlots = landPlots.map((landPlot) =>
+  //         landPlot._id === record._id
+  //           ? { ...landPlot, isActive: !record.isActive }
+  //           : landPlot
+  //       );
+  //       setLandPlots(updatedLandPlots);
+  //     } else {
+  //       message.error("Failed to toggle Land & Plots activation status");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error toggling Land & Plots activation status:", error);
+  //     message.error("Failed to toggle Land & Plots activation status");
+  //   }
+  // };
+
+
+  const handleToggleActive = async (landPlotId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/landPlots/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveLandPlot/${landPlotId._id}`,
+        {
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
+      );
       if (response.status === 200) {
-        message.success(
-          `Land & Plots ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+        message.success(`LandPlots ${isActive ? "deactivated" : "activated"} successfully`);
+        const UpdatelandPlots = landPlots.map((item) =>
+          item._id === landPlotId ? { ...item, isActive: !isActive } : item
         );
-        const updatedLandPlots = landPlots.map((landPlot) =>
-          landPlot._id === record._id
-            ? { ...landPlot, isActive: !record.isActive }
-            : landPlot
-        );
-        setLandPlots(updatedLandPlots);
+        setLandPlots(UpdatelandPlots);
       } else {
-        message.error("Failed to toggle Land & Plots activation status");
+        message.error("Failed to toggle landPlots activation status");
       }
     } catch (error) {
-      console.error("Error toggling Land & Plots activation status:", error);
-      message.error("Failed to toggle Land & Plots activation status");
+      console.error("Error toggling landPlots activation status:", error);
+      message.error("Failed to toggle landPlots activation status");
     }
   };
 

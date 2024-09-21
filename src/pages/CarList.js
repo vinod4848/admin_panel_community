@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -68,28 +69,29 @@ const CarList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+
+  const handleToggleActive = async (carId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/cars/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveCar/${carId._id}`,
+        {
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
+      );
       if (response.status === 200) {
-        message.success(
-          `Car ${record.isActive ? "deactivated" : "activated"} successfully`
+        message.success(`Cars ${isActive ? "deactivated" : "activated"} successfully`);
+        const Updatecars = cars.map((item) =>
+          item._id === carId ? { ...item, isActive: !isActive } : item
         );
-        const updatedCars = cars.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
-        );
-        setCars(updatedCars);
+        setCars(Updatecars);
       } else {
-        message.error("Failed to toggle car activation status");
+        message.error("Failed to toggle cars activation status");
       }
     } catch (error) {
-      console.error("Error toggling car activation status:", error);
-      message.error("Failed to toggle car activation status");
+      console.error("Error toggling cars activation status:", error);
+      message.error("Failed to toggle cars activation status");
     }
   };
 

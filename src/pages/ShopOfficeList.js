@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -71,36 +72,30 @@ const ShopOfficeList = () => {
     setFilterValue(value);
   };
 
-  const handleToggleActive = async (record) => {
+  const handleToggleActive = async (shopOfficeId, isActive) => {
     try {
       const response = await axios.put(
-        `${base_url}/shopOffices/${record._id}`,
+        `${base_url}/approveShopOffice/${shopOfficeId._id}`,
         {
-          isActive: !record.isActive,
-          approvedby: getUserData ? getUserData._id || "" : "",
-        }
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
       );
       if (response.status === 200) {
-        message.success(
-          `Shop/Office ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+        message.success(`LandPlots ${isActive ? "deactivated" : "activated"} successfully`);
+        const UpdatelandPlots = shopOffices.map((item) =>
+          item._id === shopOfficeId ? { ...item, isActive: !isActive } : item
         );
-        const updatedShopOffices = shopOffices.map((office) =>
-          office._id === record._id
-            ? { ...office, isActive: !record.isActive }
-            : office
-        );
-        setShopOffices(updatedShopOffices);
+        setShopOffices(UpdatelandPlots);
       } else {
-        message.error("Failed to toggle Shop/Office activation status");
+        message.error("Failed to toggle shopOffices activation status");
       }
     } catch (error) {
-      console.error("Error toggling Shop/Office activation status:", error);
-      message.error("Failed to toggle Shop/Office activation status");
+      console.error("Error toggling shopOffices activation status:", error);
+      message.error("Failed to toggle shopOffices activation status");
     }
   };
-
   const filteredShopOffices = shopOffices.filter((office) => {
     const adTitleMatch = office.adTitle
       .toLowerCase()

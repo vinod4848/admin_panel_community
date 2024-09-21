@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
+
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -9,7 +11,7 @@ import { RiSearchLine } from "react-icons/ri";
 const { Option } = Select;
 
 const BicyclesList = () => {
-  const [bicycles, setFurniture] = useState([]);
+  const [bicycles, setBicycle] = useState([]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [PhoneToDelete, setPhoneToDelete] = useState(null);
   const [filterValue, setFilterValue] = useState("all");
@@ -21,7 +23,7 @@ const BicyclesList = () => {
     const fetchPhone = async () => {
       try {
         const response = await axios.get(`${base_url}/bicycles`);
-        setFurniture(response.data);
+        setBicycle(response.data);
       } catch (error) {
         console.error("Error fetching bicycles:", error);
       }
@@ -40,7 +42,7 @@ const BicyclesList = () => {
         const upadtePhone = bicycles.filter(
           (item) => item._id !== PhoneToDelete._id
         );
-        setFurniture(upadtePhone);
+        setBicycle(upadtePhone);
         setDeleteModalVisible(false);
         setPhoneToDelete(null);
       } else {
@@ -69,22 +71,22 @@ const BicyclesList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  const handleToggleActive = async (bicyclesId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/bicycles/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveBicycles/${bicyclesId._id}`,
+        {
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
+      );
       if (response.status === 200) {
-        message.success(
-          `Phone ${record.isActive ? "deactivated" : "activated"} successfully`
+        message.success(`Cars ${isActive ? "deactivated" : "activated"} successfully`);
+        const UpdateBicycle = bicycles.map((item) =>
+          item._id === bicyclesId ? { ...item, isActive: !isActive } : item
         );
-        const upadtePhone = bicycles.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
-        );
-        setFurniture(upadtePhone);
+        setBicycle(UpdateBicycle);
       } else {
         message.error("Failed to toggle bicycles activation status");
       }

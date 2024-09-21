@@ -3,22 +3,15 @@
   --color-secondary: #288599;  
   --color-success: #47ad24;  
   --color-danger: #e52e2e;  
-  
- 
   --color-dark: #212529;  
-  --color-gray-dark: #3d464d; 
+  --color-gray-dark: #324b5e; 
   --color-light-gray: #c3d4da;  
   --color-background-light: #f8f9fa;  
   --color-muted: #6c757d; 
-  
-
-  --color-warning: #ffb347;  /* Warning messages (orange) */
-  --color-info: #17a2b8;  /* Information messages (light blue) */
-  
-
+  --color-warning: #ffb347;  
+  --color-info: #17a2b8; 
   --color-sidebar: #177a6b;  
   --color-sidebar-hover: #6ac9bb;  
-  
   --button-border-radius: 6px; 
 }
 
@@ -65,7 +58,6 @@
 }
 
 
-/* Table */
 table {
   width: 100%;
   border-collapse: collapse;

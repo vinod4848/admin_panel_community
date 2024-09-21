@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select ,Space, Image} from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { useSelector } from "react-redux";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
@@ -70,32 +71,32 @@ const LandsPlotsList = () => {
     setFilterValue(value);
   };
 
-  const handleToggleActive = async (record) => {
+
+  const handleToggleActive = async (propertyId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/properties/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveProperty/${propertyId._id}`,
+        {
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
+      );
       if (response.status === 200) {
-        message.success(
-          `Land & Plots ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+        message.success(`Accessories ${isActive ? "deactivated" : "activated"} successfully`);
+        const UpdateProperties = properties.map((item) =>
+          item._id === propertyId ? { ...item, isActive: !isActive } : item
         );
-        const updatedLandPlots = properties.map((property) =>
-          property._id === record._id
-            ? { ...property, isActive: !record.isActive }
-            : property
-        );
-        setProperties(updatedLandPlots);
+        setProperties(UpdateProperties);
       } else {
-        message.error("Failed to toggle property activation status");
+        message.error("Failed to toggle properties activation status");
       }
     } catch (error) {
-      console.error("Error toggling property activation status:", error);
-      message.error("Failed to toggle property activation status");
+      console.error("Error toggling properties activation status:", error);
+      message.error("Failed to toggle properties activation status");
     }
   };
+
 
   const columns = [
     {

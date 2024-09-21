@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -11,7 +12,7 @@ const { Option } = Select;
 const OtherList = () => {
   const [other, setOther] = useState([]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [fashionToDelete, setOtherToDelete] = useState(null);
+  const [otherToDelete, setOtherToDelete] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterValue, setFilterValue] = useState("all");
 
@@ -32,23 +33,19 @@ const OtherList = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${base_url}/other/${fashionToDelete._id}`
-      );
+      const response = await axios.delete(`${base_url}/other/${otherToDelete._id}`);
       if (response.status === 200) {
-        message.success("other deleted successfully");
-        const updatedOther = other.filter(
-          (item) => item._id !== fashionToDelete._id
-        );
+        message.success("Other item deleted successfully");
+        const updatedOther = other.filter((item) => item._id !== otherToDelete._id);
         setOther(updatedOther);
         setDeleteModalVisible(false);
         setOtherToDelete(null);
       } else {
-        message.error("Failed to delete other");
+        message.error("Failed to delete other item");
       }
     } catch (error) {
-      console.error("Error deleting other:", error);
-      message.error("Failed to delete other");
+      console.error("Error deleting other item:", error);
+      message.error("Failed to delete other item");
     }
   };
 
@@ -65,32 +62,33 @@ const OtherList = () => {
   const handleFilterChange = (value) => {
     setFilterValue(value);
   };
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  const handleToggleActive = async (otherId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/other/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveOthers/${otherId}`,
+        {
+          isActive: !isActive,
+          approvedby: getUserData?._id || "",
+        },
+        Config
+      );
       if (response.status === 200) {
-        message.success(
-          `other ${record.isActive ? "deactivated" : "activated"} successfully`
-        );
+        message.success(`Other item ${isActive ? "deactivated" : "activated"} successfully`);
         const updatedOther = other.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
+          item._id === otherId ? { ...item, isActive: !isActive } : item
         );
         setOther(updatedOther);
       } else {
-        message.error("Failed to toggle other activation status");
+        message.error("Failed to toggle other item activation status");
       }
     } catch (error) {
-      console.error("Error toggling other activation status:", error);
-      message.error("Failed to toggle other activation status");
+      console.error("Error toggling other item activation status:", error);
+      message.error("Failed to toggle other item activation status");
     }
   };
 
@@ -108,27 +106,14 @@ const OtherList = () => {
       title: "Post",
       dataIndex: "firstName",
     },
-    // {
-    //   title: "Ad Title",
-    //   dataIndex: "adTitle",
-    // },
-  
     {
       title: "Price",
       dataIndex: "price",
     },
-    // {
-    //   title: "Description",
-    //   dataIndex: "description",
-    // },
     {
       title: "Address",
       dataIndex: "address",
     },
-    // {
-    //   title: "Landmark",
-    //   dataIndex: "landmark",
-    // },
     {
       title: "Images",
       dataIndex: "images",
@@ -147,13 +132,12 @@ const OtherList = () => {
             <span>No images</span>
           )}
         </Space>
-      ),      
+      ),
     },
     {
       title: "Amount",
       dataIndex: "amount",
     },
-
     {
       title: "Image",
       dataIndex: "image",
@@ -171,12 +155,11 @@ const OtherList = () => {
         </Space>
       ),
     },
-   
     {
       title: "Status",
       dataIndex: "isActive",
       render: (isActive, record) => (
-        <Button type="primary" onClick={() => handleToggleActive(record)}>
+        <Button type="primary" onClick={() => handleToggleActive(record._id, isActive)}>
           {isActive ? "Deactivate" : "Activate"}
         </Button>
       ),
@@ -185,16 +168,15 @@ const OtherList = () => {
       title: "Action",
       dataIndex: "",
       render: (_, record) => (
-        <>
-          <Button
-            type="danger"
-            onClick={() => showDeleteModal(record)}
-            icon={<AiFillDelete style={{ color: "#da3838" }} />}
-          />
-        </>
+        <Button
+          type="danger"
+          onClick={() => showDeleteModal(record)}
+          icon={<AiFillDelete style={{ color: "#da3838" }} />}
+        />
       ),
     },
   ];
+
   const filteredData = other.filter((item) => {
     const adTitleMatch = item.adTitle
       .toLowerCase()
@@ -236,7 +218,7 @@ const OtherList = () => {
         <input
           type="text"
           className="form-control"
-          placeholder="Search by Ad Title, Price, or OtherType"
+          placeholder="Search by Ad Title, Price, or Other Type"
           value={searchQuery}
           onChange={handleSearch}
         />

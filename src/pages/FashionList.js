@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
+import { Config } from "../utils/axiosconfig";
 import { base_url } from "../utils/base_url";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -69,22 +70,22 @@ const FashionList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  const handleToggleActive = async (fashionId, isActive) => {
     try {
-      const response = await axios.put(`${base_url}/fashion/${record._id}`, {
-        isActive: !record.isActive,
-        approvedby: getUserData?._id || "",
-      });
+      const response = await axios.put(
+        `${base_url}/approveFashion/${fashionId._id}`,
+        {
+          isActive: !isActive, 
+          approvedby: getUserData?._id || "", 
+        },
+        Config
+      );
       if (response.status === 200) {
         message.success(
-          `Fashion ${
-            record.isActive ? "deactivated" : "activated"
-          } successfully`
+          `Fashion ${isActive ? "deactivated" : "activated"} successfully`
         );
         const updatedFashion = fashion.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
+          item._id === fashionId ? { ...item, isActive: !isActive } : item
         );
         setFashion(updatedFashion);
       } else {
@@ -95,6 +96,7 @@ const FashionList = () => {
       message.error("Failed to toggle fashion activation status");
     }
   };
+
 
   const columns = [
     {

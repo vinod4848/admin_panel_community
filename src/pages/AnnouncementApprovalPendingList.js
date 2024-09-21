@@ -4,6 +4,7 @@ import { Modal, Button, Table, Image } from "react-bootstrap";
 import { Space } from "antd";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Config } from "../utils/axiosconfig";
 
 const AnnouncementApprovalPendingList = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -63,10 +64,10 @@ const AnnouncementApprovalPendingList = () => {
 
   const handleActivate = (announcementId) => {
     axios
-      .put(`${base_url}/updateAnnouncementStatus/${announcementId}`, {
+      .put(`${base_url}/approveAnnouncement/${announcementId}`, {
         isActive: true,
         approvedby: getUserData?._id || "",
-      })
+      },Config)
       .then((response) => {
         if (response.status !== 200) {
           throw new Error("Failed to activate announcement");

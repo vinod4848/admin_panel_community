@@ -1,0 +1,94 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .dashboard-title {
+    font-size: 1.8rem;
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+  .summary-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+  }
+  
+  .total-amount-label {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .total-amount {
+    font-size: 2rem; 
+    color: #28a745; 
+  }
+  
+  .summary-trend {
+    text-align: right;
+  }
+  
+  .trend-value {
+    color: #dc3545; 
+    font-size: 1.2rem;
+  }
+  
+  .trend-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  .events-title, .payments-title {
+    font-size: 1.5rem; 
+    color: #343a40;
+  }
+  
+  .event-card {
+    transition: transform 0.2s;
+    padding: 0px !important;
+  }
+  
+  .event-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .event-title {
+    font-size: 1.2rem; 
+    font-weight: bold;
+  }
+  
+  .event-description {
+    color: #495057; 
+  }
+  
+  .event-detail {
+    margin: 5px 0; 
+  }
+  
+  .card {
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #e9ecef;
+    border-bottom: none;
+    font-weight: bold; 
+  }
+  
+  .payment-header {
+    font-size: 1.1rem; 
+  }
+  
+  .payment-body {
+    font-size: 0.95rem; 
+  }
+  

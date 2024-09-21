@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Table, message, Modal, Button, Select, Space, Image } from "antd";
 import axios from "axios";
 import { base_url } from "../utils/base_url";
+import { Config } from "../utils/axiosconfig";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
 const { Option } = Select;
 
 const AccessoriesList = () => {
-  const [accessories, setFurniture] = useState([]);
+  const [accessories, setAccessories] = useState([]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [PhoneToDelete, setPhoneToDelete] = useState(null);
+  const [PhoneToDelete, setAccessoriesToDelete] = useState(null);
   const [filterValue, setFilterValue] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const getUserData = useSelector((state) => state.auth.user);
@@ -19,7 +20,7 @@ const AccessoriesList = () => {
     const fetchPhone = async () => {
       try {
         const response = await axios.get(`${base_url}/accessories`);
-        setFurniture(response.data);
+        setAccessories(response.data);
       } catch (error) {
         console.error("Error fetching accessories:", error);
       }
@@ -34,13 +35,13 @@ const AccessoriesList = () => {
         `${base_url}/accessories/${PhoneToDelete._id}`
       );
       if (response.status === 200) {
-        message.success("Phone deleted successfully");
+        message.success("Accessories deleted successfully");
         const upadtePhone = accessories.filter(
           (item) => item._id !== PhoneToDelete._id
         );
-        setFurniture(upadtePhone);
+        setAccessories(upadtePhone);
         setDeleteModalVisible(false);
-        setPhoneToDelete(null);
+        setAccessoriesToDelete(null);
       } else {
         message.error("Failed to delete accessories");
       }
@@ -52,12 +53,12 @@ const AccessoriesList = () => {
 
   const showDeleteModal = (record) => {
     setDeleteModalVisible(true);
-    setPhoneToDelete(record);
+    setAccessoriesToDelete(record);
   };
 
   const hideDeleteModal = () => {
     setDeleteModalVisible(false);
-    setPhoneToDelete(null);
+    setAccessoriesToDelete(null);
   };
 
   const handleFilterChange = (value) => {
@@ -67,25 +68,22 @@ const AccessoriesList = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleToggleActive = async (record) => {
+  const handleToggleActive = async (accessoriesId, isActive) => {
     try {
       const response = await axios.put(
-        `${base_url}/accessories/${record._id}`,
+        `${base_url}/approveAccessories/${accessoriesId._id}`,
         {
-          isActive: !record.isActive,
+          isActive: !isActive,
           approvedby: getUserData?._id || "",
-        }
+        },
+        Config
       );
       if (response.status === 200) {
-        message.success(
-          `Phone ${record.isActive ? "deactivated" : "activated"} successfully`
+        message.success(`Accessories ${isActive ? "deactivated" : "activated"} successfully`);
+        const updateAccessories = accessories.map((item) =>
+          item._id === accessoriesId ? { ...item, isActive: !isActive } : item
         );
-        const upadtePhone = accessories.map((item) =>
-          item._id === record._id
-            ? { ...item, isActive: !record.isActive }
-            : item
-        );
-        setFurniture(upadtePhone);
+        setAccessories(updateAccessories);
       } else {
         message.error("Failed to toggle accessories activation status");
       }
@@ -94,6 +92,7 @@ const AccessoriesList = () => {
       message.error("Failed to toggle accessories activation status");
     }
   };
+
 
   const columns = [
     {
